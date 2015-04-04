@@ -10,7 +10,7 @@ namespace dbX.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "dbX";
 
             return View();
         }
