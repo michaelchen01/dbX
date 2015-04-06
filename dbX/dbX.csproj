@@ -239,6 +239,10 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="fonts\LeagueGothic-CondensedItalic.otf" />
+    <Content Include="fonts\LeagueGothic-CondensedRegular.otf" />
+    <Content Include="fonts\LeagueGothic-Italic.otf" />
+    <Content Include="fonts\LeagueGothic-Regular.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

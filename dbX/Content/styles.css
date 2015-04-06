@@ -1,3 +1,16 @@
-﻿.featured-bounties{
-    background-color: #eeeeee;
+﻿@font-face{
+    font-family: "LeagueGothic-Regular";
+    src: url('../fonts/LeagueGothic-Regular.otf');
+}
+
+.featured-bounties h2{
+    font-family:Calibri;
+}
+
+.featured-bounties {
+    font-family:Calibri;
+    background-color: #98EAFF;
+    float:left;
+    margin:0 5px 0 5px;
+    padding:5px 20px 5px 20px;
 }
