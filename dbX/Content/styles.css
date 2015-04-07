@@ -3,8 +3,41 @@
     src: url('../fonts/LeagueGothic-Regular.otf');
 }
 
+.featured-img-profile {
+	width: 200px;
+	height: 200px;
+	border-radius: 100px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+    background-image: url("images/icon-user-default.png");
+    background-size: contain;
+}
+
+.profile-icon-container {
+    width: 50%;
+    margin: 10% auto 0 auto;
+}
+
+.profile-name-container {
+    font-family: Calibri;
+    text-align:center;
+}
+
+.profile-tab-container {
+    font-family: Calibri;
+}
+
+.bounty-pill-container {
+    font-family:Calibri;
+    background-color: #F0F8FF;
+    float:left;
+    margin:2% 5px 1% 5px;
+    padding:5px 20px 5px 20px;
+}
+
 .featured-bounties h2{
     font-family:Calibri;
+    text-align:center;
 }
 
 .featured-bounties {
@@ -13,4 +46,15 @@
     float:left;
     margin:0 5px 0 5px;
     padding:5px 20px 5px 20px;
+}
+
+.find-bounty-container {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.find-bounty-button {
+    margin:20px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+    font-family:Calibri;
 }
