@@ -1,6 +1,35 @@
 ﻿@font-face{
     font-family: "LeagueGothic-Regular";
-    src: url('../fonts/LeagueGothic-Regular.otf');
+    src: url('../fonts/league-gothic/league-gothic/LeagueGothic-Regular.otf');
+}
+
+@font-face{
+    font-family: "Quicksand-Book";
+    src: url('../fonts/quicksand/Quicksand_Book.otf');
+}
+
+.dbx-nav {
+    background-color: #140F2D;
+}
+
+body {
+    background-color: #3F88C5;
+    font-family: Quicksand-Book;
+}
+
+body h1{
+    font-family: Quicksand-Book;
+}
+
+
+.splash-jumbotron {
+    background-color: #D72638;
+    color: white;
+    text-align: center;
+}
+
+.splash-jumbotron h1{
+    font-family: Quicksand-Book;
 }
 
 .featured-img-profile {
@@ -19,7 +48,7 @@
 }
 
 .profile-name-container {
-    font-family: Calibri;
+     font-family: Calibri; 
     text-align:center;
 }
 
@@ -38,13 +67,14 @@
 }
 
 .featured-bounties h2{
-    font-family:Calibri;
+    font-family:Quicksand-Book;
     text-align:center;
 }
 
 .featured-bounties {
-    font-family:Calibri;
-    background-color: #F0F8FF;
+    text-align:center;
+    font-family:Quicksand-Book;
+    background-color: #F49D37;
     float:left;
     margin:0 5px 0 5px;
     padding:5px 20px 5px 20px;
@@ -58,5 +88,5 @@
 .find-bounty-button {
     margin:20px 10px 10px 10px;
     padding: 10px 10px 10px 10px;
-    font-family:Calibri;
+    font-family:Quicksand-Book;
 }
