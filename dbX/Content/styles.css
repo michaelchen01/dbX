@@ -27,10 +27,12 @@
     font-family: Calibri;
 }
 
+.bounty-pill-list {
+}
+
 .bounty-pill-container {
     font-family:Calibri;
     background-color: #F0F8FF;
-    float:left;
     margin:2% 5px 1% 5px;
     padding:5px 20px 5px 20px;
 }
