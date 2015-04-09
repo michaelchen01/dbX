@@ -1,70 +1,76 @@
-﻿<div class="jumbotron splash-jumbotron">
-    <h1>Welcome to dbX</h1>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum purus eu quam gravida fringilla.
+﻿<div class="splash">
+    <div class="jumbotron splash-jumbotron">
+        <h1>Welcome to dbX</h1>
+        <p class="lead">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum purus eu quam gravida fringilla.
             Curabitur euismod euismod malesuada. Sed pretium gravida orci a suscipit. Suspendisse felis lorem, luctus vel
-            lectus nec, rhoncus lacinia sem. Nam sit amet ultricies ante, eget hendrerit sapien. </p>
-    <p><a href="" class="btn btn-success btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<hr/>
-
-<div class="row">
-    <div class="col-md-12" style="text-align:center">
-        <h1 style="font-family:Quicksand-Book; color:white">Featured Bounties</h1>
+            lectus nec, rhoncus lacinia sem. Nam sit amet ultricies ante, eget hendrerit sapien.
+        </p>
+        <p><a href="" class="btn btn-success btn-lg">Learn more &raquo;</a></p>
     </div>
-</div>
 
-<hr/>
+    <hr />
 
-<div class="row">
-    <div class="col-md-4">
-        <div class="featured-bounties">
-            <h2>Bounty #1</h2>
-            <hr />
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum purus eu quam gravida fringilla. 
-            Curabitur euismod euismod malesuada. Sed pretium gravida orci a suscipit. Suspendisse felis lorem, luctus vel
-            lectus nec, rhoncus lacinia sem. Nam sit amet ultricies ante, eget hendrerit sapien. Mauris hendrerit vel 
-            mauris a interdum. Mauris consequat, ex porta posuere molestie, mauris felis volutpat ligula, ut euismod massa
-            dui eu diam. Maecenas eu facilisis mauris.</p>
-            <p><a class="btn btn-default" href="">View Details &raquo;</a></p>
+    <div class="row">
+        <div class="col-md-12" style="text-align:center">
+            <h1 style="font-family:Quicksand-Book">Featured Bounties</h1>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="featured-bounties">
-            <h2>Bounty #2</h2>
-            <hr />
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum purus eu quam gravida fringilla.
-                Curabitur euismod euismod malesuada. Sed pretium gravida orci a suscipit. Suspendisse felis lorem, luctus vel
-                lectus nec, rhoncus lacinia sem. Nam sit amet ultricies ante, eget hendrerit sapien. Mauris hendrerit vel
-                mauris a interdum. Mauris consequat, ex porta posuere molestie, mauris felis volutpat ligula, ut euismod massa
-                dui eu diam. Maecenas eu facilisis mauris.
-            </p>
-            <p><a class="btn btn-default" href="">View Details &raquo;</a></p>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="featured-bounties">
-            <h2>Bounty #3</h2>
-            <hr />
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum purus eu quam gravida fringilla.
-                Curabitur euismod euismod malesuada. Sed pretium gravida orci a suscipit. Suspendisse felis lorem, luctus vel
-                lectus nec, rhoncus lacinia sem. Nam sit amet ultricies ante, eget hendrerit sapien. Mauris hendrerit vel
-                mauris a interdum. Mauris consequat, ex porta posuere molestie, mauris felis volutpat ligula, ut euismod massa
-                dui eu diam. Maecenas eu facilisis mauris.
-            </p>
-            <p><a class="btn btn-default" href="">View Details &raquo;</a></p>
-        </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <div class="find-bounty-container">
-            <a class="btn btn-success find-bounty-button" href="">Find More Bounties &raquo;</a>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="featured-bounties">
+                <h2>Bounty #1</h2>
+                <hr />
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum purus eu quam gravida fringilla.
+                    Curabitur euismod euismod malesuada. Sed pretium gravida orci a suscipit. Suspendisse felis lorem, luctus vel
+                    lectus nec, rhoncus lacinia sem. Nam sit amet ultricies ante, eget hendrerit sapien. Mauris hendrerit vel
+                    mauris a interdum. Mauris consequat, ex porta posuere molestie, mauris felis volutpat ligula, ut euismod massa
+                    dui eu diam. Maecenas eu facilisis mauris.
+                </p>
+                @Html.ActionLink(HttpUtility.HtmlDecode("View Details &raquo;"), "Index", "BountyPost", new { area = "" }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="featured-bounties">
+                <h2>Bounty #2</h2>
+                <hr />
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum purus eu quam gravida fringilla.
+                    Curabitur euismod euismod malesuada. Sed pretium gravida orci a suscipit. Suspendisse felis lorem, luctus vel
+                    lectus nec, rhoncus lacinia sem. Nam sit amet ultricies ante, eget hendrerit sapien. Mauris hendrerit vel
+                    mauris a interdum. Mauris consequat, ex porta posuere molestie, mauris felis volutpat ligula, ut euismod massa
+                    dui eu diam. Maecenas eu facilisis mauris.
+                </p>
+                @Html.ActionLink(HttpUtility.HtmlDecode("View Details &raquo;"), "Index", "BountyPost", new { area = "" }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="featured-bounties">
+                <h2>Bounty #3</h2>
+                <hr />
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum purus eu quam gravida fringilla.
+                    Curabitur euismod euismod malesuada. Sed pretium gravida orci a suscipit. Suspendisse felis lorem, luctus vel
+                    lectus nec, rhoncus lacinia sem. Nam sit amet ultricies ante, eget hendrerit sapien. Mauris hendrerit vel
+                    mauris a interdum. Mauris consequat, ex porta posuere molestie, mauris felis volutpat ligula, ut euismod massa
+                    dui eu diam. Maecenas eu facilisis mauris.
+                </p>
+                @Html.ActionLink(HttpUtility.HtmlDecode("View Details &raquo;"), "Index", "BountyPost", new { area = "" }, new { @class = "btn btn-primary" })
+            </div>
         </div>
     </div>
-    <div class="col-md-4"></div>
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="find-bounty-container">
+                @Html.ActionLink(HttpUtility.HtmlDecode("Find More Bounties &raquo;"), "Index", "Search", new { area = "" }, new { @class = "btn btn-success find-bounty-button" })
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
 </div>

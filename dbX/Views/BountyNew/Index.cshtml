@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>Title of Bounty</h1>
+    </div>
+    <div class="col-md-6">
+        <form>
+            Background:<br>
+            <input type="text" class="input-xlg" name="bountyBackground"><br>
+            <br>
+            Task:<br>
+            <input type="text" class="input-xlg" name="bountyTask">
+        </form>
+        <br>
+        <button type="button">
+            Upload Problem Code
+        </button>
+    </div>
+    <div class="col-md-3">
+        <form>
+            <br>
+            <div style="outline: 1px solid black" class="outline">
+                Price:<br>
+                <input type="text" name="bountyPrice" placeholder="# of coins"><br>
+            </div>
+            <br>
+            <div style="outline: 1px solid black" class="outline">
+                Due Date:<br>
+                <input data-provide="datepicker" class="date-input" name="bountyDateDue" placeholder="12:00 AM mm/dd/yy">
+            </div>
+        </form>
+        <br>
+        <div style="outline: 1px solid black" class="outline">
+            You have X Amount of coins!
+        </div>
+    </div>
+</div>
