@@ -169,6 +169,7 @@ namespace dbX.Domain.Repository
                     .Set("Task", newBounty.Task)
                     .Set("Coins", newBounty.Coins)
                     .Set("EndTime", newBounty.EndTime)
+                    .Set("Tags", BsonArray.Create(newBounty.Tags))
                     .Set("LastModified", newBounty.LastModified);
                 WriteConcernResult result = bounties.Update(query, update);
                 return result.UpdatedExisting;

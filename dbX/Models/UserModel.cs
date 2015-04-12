@@ -22,6 +22,12 @@ namespace dbX.Models
 
         public int Coins { get; set; }
 
+        public IEnumerable<Bounty> FollowedBounties { get; set; }
+
+        public IEnumerable<Bounty> OpenBounties { get; set; }
+
+        public IEnumerable<Bounty> SolvedBounties { get; set; }
+
         public DateTime LastModified { get; set; }
     }
 }

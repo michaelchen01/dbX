@@ -169,6 +169,9 @@ namespace dbX.Domain.Repository
                     .Set("Password", newUser.Password)
                     .Set("Email", newUser.Email)
                     .Set("Coins", newUser.Coins)
+                    .Set("FollowedBounties", BsonArray.Create(newUser.FollowedBounties))
+                    .Set("OpenBounties", BsonArray.Create(newUser.OpenBounties))
+                    .Set("SolvedBounties", BsonArray.Create(newUser.SolvedBounties))
                     .Set("LastModified", newUser.LastModified);
                 WriteConcernResult result = users.Update(query, update);
                 return result.UpdatedExisting;

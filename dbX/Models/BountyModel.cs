@@ -15,6 +15,8 @@ namespace dbX.Models
 
         public int Coins { get; set; }
 
+        public IEnumerable<string> Tags { get; set; }
+
         public DateTime EndTime { get; set; }
 
         public DateTime LastModified { get; set; }
