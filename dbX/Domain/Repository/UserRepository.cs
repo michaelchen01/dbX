@@ -25,12 +25,9 @@ namespace dbX.Domain.Repository
         /// Creation method for our UserRepository object
         /// </summary>
         /// <param name="connection"></param>
-        public UserRepository(string connection)
+        public UserRepository()
         {
-            if (string.IsNullOrWhiteSpace(connection))
-            {
-                connection = "mongodb://gugle:gugle@ds061701.mongolab.com:61701/dbxprototype";
-            }
+            var connection = "mongodb://gugle:gugle@ds061701.mongolab.com:61701/dbxprototype";
             // Creates an instance of the MongoServer with the connection URI specified
             try
             {
@@ -52,7 +49,7 @@ namespace dbX.Domain.Repository
             // Get the Prodigy database from our MongoServer
             try
             {
-                database = server.GetDatabase("prodigy", WriteConcern.Acknowledged);
+                database = server.GetDatabase("dbxprototype", WriteConcern.Acknowledged);
             }
             catch (Exception e)
             {
