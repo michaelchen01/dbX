@@ -26,8 +26,10 @@ namespace dbX.Controllers
 
             ViewData["Username"] = user.Username;
             ViewData["Coins"] = user.Coins;
-            // TODO: Artur
-
+            ViewData["FollowedBounties"] = user.FollowedBounties;
+            ViewData["OpenBounties"] = user.OpenBounties;
+            ViewData["SolvedBounties"] = user.SolvedBounties;
+            
             return View();
         }
     }

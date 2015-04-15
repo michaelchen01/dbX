@@ -7,6 +7,8 @@ namespace dbX.Models
 {
     public class Bounty
     {
+        // Do we need a unique numeric ID? 
+
         public string Id { get; set; }
 
         public string Background { get; set; }
