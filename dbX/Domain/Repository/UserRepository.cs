@@ -106,6 +106,26 @@ namespace dbX.Domain.Repository
         }
 
         /// <summary>
+        /// Method to Get a single user given User ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Returns User Object if found.</returns>
+        public User GetUserByEmail(string email)
+        {
+            try
+            {
+                IMongoQuery query = Query.EQ("Email", email);
+                return users.Find(query).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: '{0}'", e);
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Method to add a new user into the collection.
         /// </summary>
         /// <param name="newUser"></param>

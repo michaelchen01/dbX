@@ -212,6 +212,8 @@
     <Compile Include="Controllers\BountyNewController.cs" />
     <Compile Include="Controllers\BountyPostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogInApiController.cs" />
+    <Compile Include="Controllers\LogInController.cs" />
     <Compile Include="Controllers\MarketplaceController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -312,6 +314,7 @@
     <Content Include="Views\Marketplace\Index.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\BountyNew\Index.cshtml" />
+    <Content Include="Views\LogIn\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
