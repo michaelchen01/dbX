@@ -30,7 +30,7 @@ namespace dbX.Controllers
             ViewData["OpenBounties"] = user.OpenBounties;
             ViewData["SolvedBounties"] = user.SolvedBounties;
             
-            return View();
+            return View(user);
         }
     }
 }

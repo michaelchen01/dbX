@@ -1,4 +1,5 @@
-﻿
+﻿@model dbX.Models.User
+
 @{
     ViewBag.Title = "Index";
 }
@@ -59,15 +60,34 @@
             <th>Time Left</th>
             <th></th>
         </tr>
-        <tr>
             @{
-                IEnumerable<Bounty> FollowedBounties = ViewData["FollowedBounties"];
-                foreach (var bounty in FollowedBounties)
+                foreach (var bounty in Model.FollowedBounties)
                 {
-                    <td>bounty.Id</td>
-                    <td>bounty.Background</td>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => bounty.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => bounty.Background)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => bounty.Task)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => bounty.Coins)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => bounty.EndTime)
+                        </td>
+                        <td>
+                            @Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { area = "" }, new { @class = "btn btn-primary btn-xs" })
+                        </td>
+                    </tr>
+                
                 }
             }
+        
+        <tr>
             <td>Null Pointer Exception in Java Method</td>
             <td>I have created a nested class called TorsionalParameter that has....</td>
             <td>Medium</td>
