@@ -9,7 +9,9 @@ namespace dbX.Models
     {
         public string Id { get; set; }
 
-        // what about a title? -AM
+        public string Title { get; set; }
+
+        public string Difficulty { get; set; }
 
         public string Background { get; set; }
 

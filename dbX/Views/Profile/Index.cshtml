@@ -61,23 +61,28 @@
             <th></th>
         </tr>
             @{
-                foreach (var bounty in Model.FollowedBounties)
+                foreach (var bounty in (ViewData["FollowedBounties"] as IEnumerable<dbX.Models.Bounty>))
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => bounty.Id)
+                            @bounty.Title
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => bounty.Background)
+                            @bounty.Background
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => bounty.Task)
+                            @bounty.Difficulty
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => bounty.Coins)
+                            @bounty.Coins
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => bounty.EndTime)
+                            @{
+                                DateTime currentDate = DateTime.Now;
+                                TimeSpan timeLeft = bounty.EndTime.Subtract(currentDate);
+                                @timeLeft.Days
+                            }
+                            days
                         </td>
                         <td>
                             @Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { area = "" }, new { @class = "btn btn-primary btn-xs" })
@@ -86,31 +91,6 @@
                 
                 }
             }
-        
-        <tr>
-            <td>Null Pointer Exception in Java Method</td>
-            <td>I have created a nested class called TorsionalParameter that has....</td>
-            <td>Medium</td>
-            <td>10 coins</td>
-            <td>2 days</td>
-            <td>@Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { area = "" }, new { @class = "btn btn-primary btn-xs" })</td>
-        </tr>
-        <tr>
-            <td>Null Pointer Exception in Java Method</td>
-            <td>I have created a nested class called TorsionalParameter that has....</td>
-            <td>Medium</td>
-            <td>10 coins</td>
-            <td>2 days</td>
-            <td>@Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { area = "" }, new { @class = "btn btn-primary btn-xs" })</td>
-        </tr>
-        <tr>
-            <td>Null Pointer Exception in Java Method</td>
-            <td>I have created a nested class called TorsionalParameter that has....</td>
-            <td>Medium</td>
-            <td>10 coins</td>
-            <td>2 days</td>
-            <td>@Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { area = "" }, new { @class = "btn btn-primary btn-xs" })</td>
-        </tr>
     </table>
     @*<div class="col-md-8">
             <p>Bounty Title</p>
