@@ -25,12 +25,11 @@ namespace dbX.Domain.Repository
         /// Creation method for our BountyRepository object
         /// </summary>
         /// <param name="connection"></param>
-        public BountyRepository(string connection)
+        public BountyRepository()
         {
-            if (string.IsNullOrWhiteSpace(connection))
-            {
-                connection = "mongodb://gugle:gugle@ds061701.mongolab.com:61701/dbxprototype";
-            }
+
+            var connection = "mongodb://gugle:gugle@ds061701.mongolab.com:61701/dbxprototype";
+
             // Creates an instance of the MongoServer with the connection URI specified
             try
             {
@@ -52,7 +51,7 @@ namespace dbX.Domain.Repository
             // Get the Prodigy database from our MongoServer
             try
             {
-                database = server.GetDatabase("prodigy", WriteConcern.Acknowledged);
+                database = server.GetDatabase("dbxprototype", WriteConcern.Acknowledged);
             }
             catch (Exception e)
             {
@@ -166,6 +165,8 @@ namespace dbX.Domain.Repository
                 newBounty.LastModified = DateTime.UtcNow;
                 IMongoUpdate update = Update
                     .Set("Background", newBounty.Background)
+                    .Set("Title", newBounty.Title)
+                    .Set("Difficulty", newBounty.Difficulty)
                     .Set("Task", newBounty.Task)
                     .Set("Coins", newBounty.Coins)
                     .Set("EndTime", newBounty.EndTime)

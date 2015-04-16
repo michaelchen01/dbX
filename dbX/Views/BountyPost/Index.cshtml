@@ -1,16 +1,28 @@
-﻿@{
+﻿@model dbX.Models.Bounty
+
+ @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="page-header">
-    <h1>Null Pointer Exception in Java Method</h1>
+    <h1>@ViewData["Title"]</h1>
 </div>
 
 
 <div class="row">
     <div class="col-md-8" style="text-align:left">
         <h1>Background</h1>
-        <p style="max-width: none;"><font size="4"><code>Java</code> <code>List</code> <code>NullPointerException</code></font></p>
+        <p style="max-width": none;>@ViewData["Background"]</p>
+        <p style="max-width: none;">
+            <font size="4">
+                @foreach (var item in (ViewData["Tags"] as IEnumerable<string>))
+                {
+                    <code>
+                        @item
+                    </code>
+                }
+            </font>
+        </p>
     </div>
     <div class="col-md-4" style="text-align:center">
         <div class="panel panel-default">
@@ -18,7 +30,7 @@
                 <h3><b>Price</b></h3>
             </div>
             <div class="panel-body" style="align-content:center">
-                <font size="5">$10</font>
+                <font size="5">@ViewData["Coins"]</font>
             </div>
         </div>
     </div>
@@ -26,15 +38,23 @@
 <div class="row">
     <div class="col-md-8" style="text-align:left">
         <h1>Task</h1>
-        <p>I have created a nested class called TorsionalParameter that has parallel immutable lists of length 3. This list is not null but when I call it in another class it generates a NullPointerException.</p>
+        <p>@ViewData["Task"]</p>
     </div>
     <div class="col-md-4" style="text-align: center">
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightgray">
-                <h3><b>Time Left</b></h3>
+                <h3><b>
+                    Time Left
+                </b></h3>
             </div>
             <div class="panel-body" style="align-content:center">
-                <font size="5">2 days</font>
+                <font size="5">
+                    @{
+                        DateTime currentDate = DateTime.Now;
+                        TimeSpan timeLeft = Model.EndTime.Subtract(currentDate);
+                        @timeLeft.Days
+                    }
+                </font>
             </div>
         </div>
     </div>
@@ -42,7 +62,16 @@
 
 <div class="row">
     <div class="text-center">
-        <div class="btn btn-success btn-lg center-block" style="text-align: center"><font size="5">Participate</font></div>
+        <div id="participateButton" class="btn btn-success btn-lg center-block" style="text-align: center"><font size="5">Participate</font></div>
     </div>
 </div>
+
+<script language="javascript">
+    $(document).ready(function () {
+        $('#participateButton').click(function () {
+            $('#participateButton').html("You are participating!")
+        });
+
+    });
+</script>
 
