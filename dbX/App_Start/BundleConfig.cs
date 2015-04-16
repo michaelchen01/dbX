@@ -20,10 +20,16 @@ namespace dbX
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/quill").Include(
+                    "~/Scripts/quill.js",
+                    "~/Scripts/quill.min.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/styles.css"));
+                      "~/Content/styles.css",
+                      "~/Content/quill.base.css",
+                      "~/Content/quill.snow.css"));
         }
     }
 }
