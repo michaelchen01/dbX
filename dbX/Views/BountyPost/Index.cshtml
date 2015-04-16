@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-md-8" style="text-align:left">
         <h1>Background</h1>
-        <p style="max-width": none;>@ViewData["Background"]</p>
+        <p style="max-width: none;">@ViewData["Background"]</p>
         <p style="max-width: none;">
             <font size="4">
                 @foreach (var item in (ViewData["Tags"] as List<string>))
@@ -53,7 +53,7 @@
                         DateTime currentDate = DateTime.Now;
                         TimeSpan timeLeft = Model.EndTime.Subtract(currentDate);
                         @timeLeft.Days
-                    }
+                    } Days
                 </font>
             </div>
         </div>

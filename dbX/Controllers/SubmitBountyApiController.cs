@@ -22,6 +22,8 @@ namespace dbX.Controllers
 
         public string Task { get; set; }
 
+        public List<string> Tags { get; set; }
+
         public string Price { get; set; }
 
         public string EndTime { get; set; }
@@ -46,7 +48,7 @@ namespace dbX.Controllers
             bounty.Task = submitBounty.Task;
             bounty.Coins = Int32.Parse(submitBounty.Price);
             bounty.EndTime = DateTime.Parse(submitBounty.EndTime);
-            bounty.Tags = new List<string>();
+            bounty.Tags = submitBounty.Tags;
 
             bountyRepository.AddBounty(bounty);
 
