@@ -34,10 +34,12 @@ namespace dbX.Controllers
         [HttpPost]
         public string Post([FromBody]SubmitBounty submitBounty)
         {
-
+            // Create the new bounty in the database
             BountyRepository bountyRepository = new BountyRepository();
+            UserRepository userRepository = new UserRepository();
             Bounty bounty = new Bounty();
 
+            bounty.Id = ObjectId.GenerateNewId().ToString();
             bounty.Title = submitBounty.Title;
             bounty.Background = submitBounty.Background;
             bounty.Difficulty = "";
@@ -47,6 +49,12 @@ namespace dbX.Controllers
             bounty.Tags = new List<string>();
 
             bountyRepository.AddBounty(bounty);
+
+            User user = userRepository.GetUserByEmail("michael@michael.com");
+
+            user.OpenBounties.Add(bounty.Id);
+
+            userRepository.UpdateUser(user.Id,user);
 
             return "Bounty Added!";
         }

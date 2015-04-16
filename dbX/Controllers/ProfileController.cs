@@ -19,16 +19,42 @@ namespace dbX.Controllers
         public ActionResult Index()
         {
 
-            string id = "552c5e88d4a08114c0d4a905";
-
             UserRepository userRepository = new UserRepository();
-            User user = userRepository.GetUser(id);
+            BountyRepository bountyRepository = new BountyRepository();
+            User user = userRepository.GetUserByEmail("michael@michael.com");
 
             ViewData["Username"] = user.Username;
             ViewData["Coins"] = user.Coins;
-            ViewData["FollowedBounties"] = user.FollowedBounties;
-            ViewData["OpenBounties"] = user.OpenBounties;
-            ViewData["SolvedBounties"] = user.SolvedBounties;
+
+            List<Bounty> followedBounties = new List<Bounty>();
+            // Get the bounties from user's bounties
+            foreach(string item in user.FollowedBounties)
+            {
+                Bounty bounty = bountyRepository.GetBounty(item);
+                followedBounties.Add(bounty);
+            }
+
+            ViewData["FollowedBounties"] = followedBounties;
+
+            List<Bounty> openBounties = new List<Bounty>();
+            // Get the bounties from user's bounties
+            foreach (string item in user.OpenBounties)
+            {
+                Bounty bounty = bountyRepository.GetBounty(item);
+                openBounties.Add(bounty);
+            }
+
+            ViewData["OpenBounties"] = openBounties;
+
+            List<Bounty> solvedBounties = new List<Bounty>();
+            // Get the bounties from user's bounties
+            foreach (string item in user.SolvedBounties)
+            {
+                Bounty bounty = bountyRepository.GetBounty(item);
+                solvedBounties.Add(bounty);
+            }
+
+            ViewData["SolvedBounties"] = solvedBounties;
             
             return View(user);
         }

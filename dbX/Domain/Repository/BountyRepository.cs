@@ -117,7 +117,6 @@ namespace dbX.Domain.Repository
             // Generate a new string for the Bounty
             try
             {
-                newBounty.Id = ObjectId.GenerateNewId().ToString();
                 newBounty.LastModified = DateTime.UtcNow;
                 bounties.Insert(newBounty);
                 return newBounty;

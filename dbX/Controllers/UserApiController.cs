@@ -40,9 +40,9 @@ namespace dbX.Controllers
             newUser.Email = input.Email;
             newUser.Password = input.Password;
             newUser.Coins = 0;
-            newUser.FollowedBounties = Enumerable.Empty<Bounty>();
-            newUser.OpenBounties = Enumerable.Empty<Bounty>();
-            newUser.SolvedBounties = Enumerable.Empty<Bounty>(); 
+            newUser.FollowedBounties = new List<string>();
+            newUser.OpenBounties = new List<string>();
+            newUser.SolvedBounties = new List<string>();
 
             userRepository.AddUser(newUser); 
 

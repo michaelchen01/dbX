@@ -15,7 +15,7 @@
         <p style="max-width": none;>@ViewData["Background"]</p>
         <p style="max-width: none;">
             <font size="4">
-                @foreach (var item in (ViewData["Tags"] as IEnumerable<string>))
+                @foreach (var item in (ViewData["Tags"] as List<string>))
                 {
                     <code>
                         @item

@@ -42,26 +42,27 @@
     <div class="col-md-12">
         <div class="profile-tab-container">
             <ul class="nav nav-tabs nav-justified">
-                <li role="presentation" class="active"><a href="#">Your Followed Bounties</a></li>
-                <li role="presentation"><a href="#">Your Open Bounties</a></li>
-                <li role="presentation"><a href="#">Your Solved Bounties</a></li>
+                <li id="followed-bounties-tab" role="presentation" class="active"><a href="#">Your Followed Bounties</a></li>
+                <li id="open-bounties-tab" role="presentation"><a href="#">Your Open Bounties</a></li>
+                <li id="solved-bounties-tab" role="presentation"><a href="#">Your Solved Bounties</a></li>
             </ul>
         </div>
     </div>
 </div>
 
 <div class="row">
-    <table class="table">
-        <tr>
-            <th>Bounty Title</th>
-            <th>Description</th>
-            <th>Difficulty</th>
-            <th>Value</th>
-            <th>Time Left</th>
-            <th></th>
-        </tr>
+    <div id="followed-bounties-table">
+        <table class="table">
+            <tr>
+                <th>Bounty Title</th>
+                <th>Description</th>
+                <th>Difficulty</th>
+                <th>Value</th>
+                <th>Time Left</th>
+                <th></th>
+            </tr>
             @{
-                foreach (var bounty in (ViewData["FollowedBounties"] as IEnumerable<dbX.Models.Bounty>))
+                foreach (var bounty in (ViewData["FollowedBounties"] as List<dbX.Models.Bounty>))
                 {
                     <tr>
                         <td>
@@ -78,20 +79,107 @@
                         </td>
                         <td>
                             @{
-                                DateTime currentDate = DateTime.Now;
-                                TimeSpan timeLeft = bounty.EndTime.Subtract(currentDate);
-                                @timeLeft.Days
+                    DateTime currentDate = DateTime.Now;
+                    TimeSpan timeLeft = bounty.EndTime.Subtract(currentDate);
+                    @timeLeft.Days
                             }
                             days
                         </td>
                         <td>
-                            @Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { area = "" }, new { @class = "btn btn-primary btn-xs" })
+                            @Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { bountyId = bounty.Id }, new { @class = "btn btn-primary btn-xs" })
                         </td>
                     </tr>
-                
+
                 }
             }
-    </table>
+        </table>
+    </div>
+    <div id="open-bounties-table">
+        <table class="table">
+            <tr>
+                <th>Bounty Title</th>
+                <th>Description</th>
+                <th>Difficulty</th>
+                <th>Value</th>
+                <th>Time Left</th>
+                <th></th>
+            </tr>
+            @{
+                foreach (var bounty in (ViewData["OpenBounties"] as List<dbX.Models.Bounty>))
+                {
+                    <tr>
+                        <td>
+                            @bounty.Title
+                        </td>
+                        <td>
+                            @bounty.Background
+                        </td>
+                        <td>
+                            @bounty.Difficulty
+                        </td>
+                        <td>
+                            @bounty.Coins
+                        </td>
+                        <td>
+                            @{
+                    DateTime currentDate = DateTime.Now;
+                    TimeSpan timeLeft = bounty.EndTime.Subtract(currentDate);
+                    @timeLeft.Days
+                            }
+                            days
+                        </td>
+                        <td>
+                            @Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { bountyId = bounty.Id }, new { @class = "btn btn-primary btn-xs" })
+                        </td>
+                    </tr>
+
+                }
+            }
+        </table>
+    </div>
+    <div id="solved-bounties-table">
+        <table class="table">
+            <tr>
+                <th>Bounty Title</th>
+                <th>Description</th>
+                <th>Difficulty</th>
+                <th>Value</th>
+                <th>Time Left</th>
+                <th></th>
+            </tr>
+            @{
+                foreach (var bounty in (ViewData["SolvedBounties"] as List<dbX.Models.Bounty>))
+                {
+                    <tr>
+                        <td>
+                            @bounty.Title
+                        </td>
+                        <td>
+                            @bounty.Background
+                        </td>
+                        <td>
+                            @bounty.Difficulty
+                        </td>
+                        <td>
+                            @bounty.Coins
+                        </td>
+                        <td>
+                            @{
+                    DateTime currentDate = DateTime.Now;
+                    TimeSpan timeLeft = bounty.EndTime.Subtract(currentDate);
+                    @timeLeft.Days
+                            }
+                            days
+                        </td>
+                        <td>
+                            @Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { bountyId = bounty.Id }, new { @class = "btn btn-primary btn-xs" })
+                        </td>
+                    </tr>
+
+                }
+            }
+        </table>
+    </div>
     @*<div class="col-md-8">
             <p>Bounty Title</p>
             <p>Here is the description of the bounty! jhfghdsgfhjkl;kjhgfddsadfgh gdgfhgjhkkhgfdt hghjhgfd hjkjhfgdy jkjh </p>
@@ -101,3 +189,42 @@
         </div>*@
 </div>
 
+<script language="javascript">
+    $(document).ready(function () {
+
+        $('#followed-bounties-table').show();
+        $('#open-bounties-table').hide();
+        $('#solved-bounties-table').hide();
+
+        $('#followed-bounties-tab').click(function () {
+            $('#followed-bounties-tab').addClass('active');
+            $('#open-bounties-tab').removeClass('active');
+            $('#solved-bounties-tab').removeClass('active');
+
+            $('#followed-bounties-table').show();
+            $('#open-bounties-table').hide();
+            $('#solved-bounties-table').hide();
+        });
+
+        $('#open-bounties-tab').click(function () {
+            $('#followed-bounties-tab').removeClass('active');
+            $('#open-bounties-tab').addClass('active');
+            $('#solved-bounties-tab').removeClass('active');
+
+            $('#followed-bounties-table').hide();
+            $('#open-bounties-table').show();
+            $('#solved-bounties-table').hide();
+        });
+
+        $('#solved-bounties-tab').click(function () {
+            $('#followed-bounties-tab').removeClass('active');
+            $('#open-bounties-tab').removeClass('active');
+            $('#solved-bounties-tab').addClass('active');
+
+            $('#followed-bounties-table').hide();
+            $('#open-bounties-table').hide();
+            $('#solved-bounties-table').show();
+        });
+
+    });
+</script>

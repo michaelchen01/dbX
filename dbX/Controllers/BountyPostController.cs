@@ -16,10 +16,10 @@ namespace dbX.Controllers
     public class BountyPostController : Controller
     {
         // GET: BountyPost
-        public ActionResult Index()
+        public ActionResult Index(string bountyId)
         {
             // need to get id
-            string id = "552c5e88d4a08114c0d4a905";
+            string id = bountyId;
 
             BountyRepository bountyRepository = new BountyRepository();
             Bounty bounty = bountyRepository.GetBounty(id);
