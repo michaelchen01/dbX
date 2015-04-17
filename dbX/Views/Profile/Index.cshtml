@@ -69,7 +69,7 @@
                             @bounty.Title
                         </td>
                         <td>
-                            @bounty.Background
+                            @Html.Raw(bounty.Background)
                         </td>
                         <td>
                             @bounty.Difficulty
@@ -86,7 +86,7 @@
                             days
                         </td>
                         <td>
-                            @Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { bountyId = bounty.Id }, new { @class = "btn btn-primary btn-xs" })
+                            @Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { bountyId = bounty.Id, owner = 1 }, new { @class = "btn btn-primary btn-xs" })
                         </td>
                     </tr>
 
@@ -112,7 +112,7 @@
                             @bounty.Title
                         </td>
                         <td>
-                            @bounty.Background
+                            @Html.Raw(bounty.Background)
                         </td>
                         <td>
                             @bounty.Difficulty
@@ -129,7 +129,7 @@
                             days
                         </td>
                         <td>
-                            @Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { bountyId = bounty.Id }, new { @class = "btn btn-primary btn-xs" })
+                            @Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { bountyId = bounty.Id, owner = 1 }, new { @class = "btn btn-primary btn-xs" })
                         </td>
                     </tr>
 
@@ -155,7 +155,7 @@
                             @bounty.Title
                         </td>
                         <td>
-                            @bounty.Background
+                            @Html.Raw(bounty.Background)
                         </td>
                         <td>
                             @bounty.Difficulty
@@ -172,7 +172,7 @@
                             days
                         </td>
                         <td>
-                            @Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { bountyId = bounty.Id }, new { @class = "btn btn-primary btn-xs" })
+                            @Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { bountyId = bounty.Id, owner = 1 }, new { @class = "btn btn-primary btn-xs" })
                         </td>
                     </tr>
 

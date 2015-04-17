@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-md-8" style="text-align:left">
         <h1>Background</h1>
-        <p style="max-width: none;">@ViewData["Background"]</p>
+        <p style="max-width: none;">@Html.Raw(ViewData["Background"])</p>
         <p style="max-width: none;">
             <font size="4">
                 @foreach (var item in (ViewData["Tags"] as List<string>))
@@ -38,7 +38,7 @@
 <div class="row">
     <div class="col-md-8" style="text-align:left">
         <h1>Task</h1>
-        <p>@ViewData["Task"]</p>
+        <p>@Html.Raw(ViewData["Task"])</p>
     </div>
     <div class="col-md-4" style="text-align: center"> 
         <div class="panel panel-default">
@@ -60,11 +60,17 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="text-center">
-        <div id="participateButton" class="btn btn-success btn-lg center-block" style="text-align: center"><font size="5">Participate</font></div>
-    </div>
-</div>
+@{
+
+    if (Int32.Parse(ViewData["Owner"].ToString()) == 0)
+    {
+        <div class="row">
+            <div class="text-center">
+                <div id="participateButton" class="btn btn-success btn-lg center-block" style="text-align: center"><font size="5">Participate</font></div>
+            </div>
+        </div>
+    }
+}
 
 <script language="javascript">
     $(document).ready(function () {

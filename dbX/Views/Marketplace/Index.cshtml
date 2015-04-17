@@ -17,14 +17,14 @@
             <h2>Featured Deals</h2>
             <hr />
             <p></p>
-            <p><a class="btn btn-default" href="">5000 coins for $94.99</a></p>
+            <p><a id="coins-5000" class="btn btn-default" href="">5000 coins for $94.99</a></p>
         </div>
     </div>
     <div class="col-md-6">
         <div class="cash-out">
             <h2>CASH OUT</h2>
             <hr />
-            <p>You have: 18000 COINS</p>
+            <p>You have: @ViewData["Coins"] COINS</p>
             <label for="amount">Amount:</label>
             <input type="text" class="form-control" id="amount">
             <p>Select Destination:</p>
@@ -34,7 +34,7 @@
             <div class="radio">
                 <label><input type="radio" name="optradio">Paypal</label>
             </div>
-            <p><a class="btn btn-default btn-success" href="">Cash Out &raquo;</a></p>
+            <p><a id="cash-out" class="btn btn-default btn-success" href="">Cash Out &raquo;</a></p>
         </div>
     </div>
 </div>
@@ -46,7 +46,7 @@
             <div class="buy-coins">
                 <div class="col-md-6"><p>10 coins for $0.99</p></div>
                 <div class="col-md-6">
-                    <p><a class="btn btn-warning btn-sm" href="">Buy &raquo;</a></p>
+                    <p><a id="coins-10" class="btn btn-warning btn-sm" href="">Buy &raquo;</a></p>
                 </div>
             </div>
                      
@@ -57,7 +57,7 @@
             <div class="buy-coins">
                 <div class="col-md-6"><p>100 coins for $9.99</p></div>
                 <div class="col-md-6">
-                    <p><a class="btn btn-warning btn-sm" href="">Buy &raquo;</a></p>
+                    <p><a id="coins-100" class="btn btn-warning btn-sm" href="">Buy &raquo;</a></p>
                 </div>
             </div>
         </div>        
@@ -67,9 +67,95 @@
             <div class="buy coins">
                 <div class="col-md-6"><p>500 coins for $49.99</p></div>
                 <div class="col-md-6">
-                    <p><a class="btn btn-warning btn-sm" href=" ">Buy &raquo;</a></p>
+                    <p><a id="coins-500" class="btn btn-warning btn-sm" href=" ">Buy &raquo;</a></p>
                 </div>
             </div>
         </div>        
     </div>
 </div>
+
+<script language="javascript">
+    function addCoins (coinAmount) {
+
+        // Store the coin data
+        var coins = {
+            "Coins": coinAmount
+        }
+
+        // Send an AJAX query to the controller
+        $.ajax({
+            async: true,
+            url: '../api/AddCoinsApi',
+            type: 'POST',
+            data: JSON.stringify(coins),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (response) {
+                console.log('Web Api Responds with:', response);
+            },
+            error: function (exception) {
+                alert('Exeption:' + exception);
+            }
+        });
+
+        alert("You added " + coinAmount + " coins!");
+
+    }
+
+    function removeCoins(coinAmount) {
+        // Store the coin data
+        var coins = {
+            "Coins": coinAmount
+        }
+
+        // Send an AJAX query to the controller
+        $.ajax({
+            async: true,
+            url: '../api/RemoveCoinsApi',
+            type: 'POST',
+            data: JSON.stringify(coins),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (response) {
+                console.log('Web Api Responds with:', response);
+            },
+            error: function (exception) {
+                alert('Exeption:' + exception);
+            }
+        });
+
+        alert("You cashed out " + coinAmount + " coins!");
+
+
+    }
+
+    $(document).ready(function () {
+
+        $('#coins-5000').click(function () {
+            addCoins(5000);
+        });
+        $('#coins-10').click(function () {
+            addCoins(10);
+        });
+        $('#coins-100').click(function () {
+            addCoins(100);
+        });
+        $('#coins-500').click(function () {
+            addCoins(500);
+        });
+
+        $('#cash-out').click(function () {
+            var coins = $('#amount').val();
+
+            if(coins != null && @ViewData["Coins"] >= coins)
+            {
+                removeCoins(coins);
+            }
+            else
+            {
+                alert("Please enter a valid coin amount!");
+            }
+        });
+
+    });
+</script>
