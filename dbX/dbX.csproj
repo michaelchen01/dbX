@@ -212,6 +212,7 @@
     <Compile Include="Controllers\AddCoinsApiController.cs" />
     <Compile Include="Controllers\BountyNewController.cs" />
     <Compile Include="Controllers\BountyPostController.cs" />
+    <Compile Include="Controllers\FollowBountyApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogInApiController.cs" />
     <Compile Include="Controllers\LogInController.cs" />

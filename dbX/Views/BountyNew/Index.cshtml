@@ -4,7 +4,7 @@
 }
 
 <div class="page-header">
-    <h1>Bounty Title</h1>
+    <h1>Bounty Title</h1> 
     <input id="bountyTitle" class="bountyTitleInput" type="text" name="bountyTitle" placeholder="Enter a title for your bounty"/>
 </div>
 
@@ -72,6 +72,18 @@
                 <input id="bountyTags" class="bountyPriceInput" type="text" placeholder="Write tags separated by commas" />
             </div>
         </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color: lightgray">
+                <h3><b>Difficulty</b></h3>
+            </div>
+            <div class="panel-body" style="align-content:center">
+                <select id="bountyDifficulty">
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                </select>
+            </div>
+        </div>
     </div>
 </div>
 <hr/>
@@ -109,6 +121,7 @@
             var bountyPrice = $('#bountyPrice').val();
             var bountyEndTime = $('#bountyEndTime').val();
             var bountyTags = $('#bountyTags').val().split(',');
+            var bountyDifficulty = $('#bountyDifficulty').val();
 
             // Store it in a JSON object
             var bounty = {
@@ -117,7 +130,8 @@
                 'Task': bountyTask,
                 'Tags': bountyTags,
                 'Price': bountyPrice,
-                'EndTime': bountyEndTime
+                'EndTime': bountyEndTime,
+                'Difficulty': bountyDifficulty
             }
 
             // Send an AJAX query to the controller
@@ -136,6 +150,9 @@
             });
 
             // Redirect to Profile
+            alert("You've succesfully posted a bounty!")
+
+            window.location.replace('../Profile');
         }
 
         $('#submitBounty').click(function () {

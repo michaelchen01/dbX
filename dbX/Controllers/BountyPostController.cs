@@ -31,6 +31,7 @@ namespace dbX.Controllers
 
             ViewData["Owner"] = owner;
 
+            ViewData["Id"] = bounty.Id; 
             ViewData["Title"] = bounty.Title;
             ViewData["Background"] = bounty.Background;
             ViewData["Task"] = bounty.Task;

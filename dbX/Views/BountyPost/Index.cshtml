@@ -73,9 +73,38 @@
 }
 
 <script language="javascript">
+    function followBounty(bountyId) {
+
+        var bounty = {
+            'BountyId': bountyId
+        }
+
+        $.ajax({
+            url: '../api/FollowBountyApi',
+            type: 'POST',
+            data: JSON.stringify(bounty),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (response) {
+                console.log('Web Api Responds with:', response);
+            },
+            error: function (exception) {
+                alert('Exeption:' + exception);
+            }
+        });
+
+        alert('You have followed this bounty!');
+
+    }
+
     $(document).ready(function () {
         $('#participateButton').click(function () {
-            $('#participateButton').html("You are participating!")
+
+            var bountyId = '@ViewData["Id"]';
+
+            followBounty(bountyId);
+
+            $('#participateButton').html("You are participating!");
         });
 
     });

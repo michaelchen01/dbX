@@ -23,15 +23,15 @@ namespace dbX.Controllers
             User user = userRepository.GetUserByEmail("michael@michael.com");
 
             BountyRepository bountyRepository = new BountyRepository();
+            List<Bounty> bounties = bountyRepository.GetAllBounties().ToList<Bounty>();
 
             int bountyCount = 0;
             List<Bounty> featuredBounties = new List<Bounty>();
-            foreach(var bounty in user.OpenBounties)
+            foreach(var bounty in bounties)
             {
-                Bounty temp = bountyRepository.GetBounty(bounty);
                 if(bountyCount < 3)
                 {
-                    featuredBounties.Add(temp);
+                    featuredBounties.Add(bounty);
                     bountyCount++;
                 }
                 else

@@ -27,6 +27,8 @@ namespace dbX.Controllers
         public string Price { get; set; }
 
         public string EndTime { get; set; }
+
+        public string Difficulty { get; set; }
     }
 
     public class SubmitBountyApiController : ApiController
@@ -44,7 +46,7 @@ namespace dbX.Controllers
             bounty.Id = ObjectId.GenerateNewId().ToString();
             bounty.Title = submitBounty.Title;
             bounty.Background = submitBounty.Background;
-            bounty.Difficulty = "";
+            bounty.Difficulty = submitBounty.Difficulty;
             bounty.Task = submitBounty.Task;
             bounty.Coins = Int32.Parse(submitBounty.Price);
             bounty.EndTime = DateTime.Parse(submitBounty.EndTime);
