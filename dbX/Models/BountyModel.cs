@@ -19,6 +19,8 @@ namespace dbX.Models
 
         public int Coins { get; set; }
 
+        public string Code { get; set; }
+
         public List<string> Tags { get; set; }
 
         public DateTime EndTime { get; set; }

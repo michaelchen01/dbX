@@ -26,6 +26,8 @@ namespace dbX.Controllers
 
         public string Price { get; set; }
 
+        public string Code { get; set; }
+
         public string EndTime { get; set; }
 
         public string Difficulty { get; set; }
@@ -49,6 +51,7 @@ namespace dbX.Controllers
             bounty.Difficulty = submitBounty.Difficulty;
             bounty.Task = submitBounty.Task;
             bounty.Coins = Int32.Parse(submitBounty.Price);
+            bounty.Code = submitBounty.Code;
             bounty.EndTime = DateTime.Parse(submitBounty.EndTime);
             bounty.Tags = submitBounty.Tags;
 
