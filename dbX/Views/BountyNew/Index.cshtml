@@ -32,7 +32,7 @@
             </div>
             <div class="panel-body">
                 <input id="bountyPrice" class="bountyPriceInput" type="text" placeholder="Enter a price for your bounty" />
-                <h4 style="font-family:Quicksand-Book">You have X coins available.</h4>
+                <h4 style="font-family:Quicksand-Book">You have @ViewData["Coins"] coins available.</h4>
             </div>
         </div>
     </div>
@@ -51,6 +51,20 @@
             <div id="task-editor">
                 <div>Hi!</div>
                 <div>Define the task for the bounty hunters here.</div>
+                <div><br></div>
+            </div>
+        </div>
+        <h1>Code</h1>
+        <div class="quill-wrapper">
+            <!-- Toolbar for Quill -->
+            <div id="code-toolbar" class="toolbar">
+                <button class="ql-bold">Bold</button>
+                <button class="ql-italic">Italic</button>
+            </div>
+            <!-- Editor for Quill -->
+            <div id="code-editor">
+                <div>Hi!</div>
+                <div>Copy your code here!</div>
                 <div><br></div>
             </div>
         </div>
@@ -113,6 +127,13 @@
             theme: 'snow'
         });
 
+        var codeEditor = new Quill('#code-editor', {
+            modules: {
+                'toolbar': { container: '#code-toolbar' }
+            },
+            theme: 'snow'
+        });
+
         function submitBounty() {
             // Get all the info
             var bountyTitle = $('#bountyTitle').val();
@@ -122,6 +143,7 @@
             var bountyEndTime = $('#bountyEndTime').val();
             var bountyTags = $('#bountyTags').val().split(',');
             var bountyDifficulty = $('#bountyDifficulty').val();
+            var bountyCode = codeEditor.getHTML();
 
             // Store it in a JSON object
             var bounty = {
@@ -130,6 +152,7 @@
                 'Task': bountyTask,
                 'Tags': bountyTags,
                 'Price': bountyPrice,
+                'Code': bountyCode,
                 'EndTime': bountyEndTime,
                 'Difficulty': bountyDifficulty
             }

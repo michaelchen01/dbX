@@ -23,6 +23,7 @@ namespace dbX.Controllers
             User user = userRepository.GetUserByEmail("michael@michael.com");
 
             ViewData["Username"] = user.Username;
+            ViewData["Coins"] = user.Coins;
             
             return View();
         }

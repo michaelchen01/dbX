@@ -168,6 +168,7 @@ namespace dbX.Domain.Repository
                     .Set("Difficulty", newBounty.Difficulty)
                     .Set("Task", newBounty.Task)
                     .Set("Coins", newBounty.Coins)
+                    .Set("Code", newBounty.Code)
                     .Set("EndTime", newBounty.EndTime)
                     .Set("Tags", BsonArray.Create(newBounty.Tags))
                     .Set("LastModified", newBounty.LastModified);
