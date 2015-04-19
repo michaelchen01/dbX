@@ -22,6 +22,10 @@ namespace dbX.Controllers
             UserRepository userRepository = new UserRepository();
             User user = userRepository.GetUserByEmail("michael@michael.com");
 
+            BountyRepository bountyRepository = new BountyRepository();
+            IEnumerable<Bounty> allBounties = bountyRepository.GetAllBounties();
+
+            ViewData["AllBounties"] = allBounties.ToList<Bounty>();
             ViewData["Username"] = user.Username;
 
             return View();

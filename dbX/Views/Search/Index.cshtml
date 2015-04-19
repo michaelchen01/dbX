@@ -82,38 +82,38 @@
                     <th>Time Left</th>
                     <th></th>
                 </tr>
-                <tr>
-                    <td>Null Pointer Exception in Java Method</td>
-                    <td>I have created a nested class called TorsionalParameter that has....</td>
-                    <td>Medium</td>
-                    <td>10 coins</td>
-                    <td>2 days</td>
-                    <td>@Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { area = "" }, new { @class = "btn btn-primary btn-xs" })</td>
-                </tr>
-                <tr>
-                    <td>Null Pointer Exception in Java Method</td>
-                    <td>I have created a nested class called TorsionalParameter that has....</td>
-                    <td>Medium</td>
-                    <td>10 coins</td>
-                    <td>2 days</td>
-                    <td>@Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { area = "" }, new { @class = "btn btn-primary btn-xs" })</td>
-                </tr>
-                <tr>
-                    <td>Null Pointer Exception in Java Method</td>
-                    <td>I have created a nested class called TorsionalParameter that has....</td>
-                    <td>Medium</td>
-                    <td>10 coins</td>
-                    <td>2 days</td>
-                    <td>@Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { area = "" }, new { @class = "btn btn-primary btn-xs" })</td>
-                </tr>
-            </table>
-            @*<div class="col-md-8">
-                    <p>Bounty Title</p>
-                    <p>Here is the description of the bounty! jhfghdsgfhjkl;kjhgfddsadfgh gdgfhgjhkkhgfdt hghjhgfd hjkjhfgdy jkjh </p>
-                </div>
-                <div class="col-md-4">
-                    [Medium]
-                </div>*@
+                
+                    @{
+                        foreach(var bounty in (ViewData["AllBounties"] as List<dbX.Models.Bounty>))
+                        {
+                            <tr>
+                                <td>
+                                    @bounty.Title
+                                </td>
+                                <td>
+                                    @bounty.Background
+                                </td>
+                                <td>
+                                    @bounty.Difficulty
+                                </td>
+                                <td>
+                                    @bounty.Coins
+                                </td>
+                                <td>
+                                @{
+                                    DateTime currentDate = DateTime.Now;
+                                    TimeSpan timeLeft = bounty.EndTime.Subtract(currentDate);
+                                    @timeLeft.Days
+                                }
+                                </td>
+                                <td>
+                                    @Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "BountyPost", new { bountyId = bounty.Id, owner = 1 }, new { @class = "btn btn-primary btn-xs" })
+                                </td>
+                            </tr>
+
+                        }
+                    }
+                </table>
         </div>
     </div>
 </div>
