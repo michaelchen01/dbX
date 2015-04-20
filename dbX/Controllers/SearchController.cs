@@ -23,9 +23,22 @@ namespace dbX.Controllers
             User user = userRepository.GetUserByEmail("michael@michael.com");
 
             BountyRepository bountyRepository = new BountyRepository();
-            IEnumerable<Bounty> allBounties = bountyRepository.GetAllBounties();
+            List<Bounty> allBounties = bountyRepository.GetAllBounties().ToList<Bounty>();
 
-            ViewData["AllBounties"] = allBounties.ToList<Bounty>();
+            List<Bounty> bountiesToDisplay = new List<Bounty>();
+            foreach(var bounty in allBounties)
+            {
+                if(!user.OpenBounties.Contains(bounty.Id))
+                {
+                    bountiesToDisplay.Add(bounty);
+                }
+            }
+
+            bountiesToDisplay.OrderByDescending(t => t.Coins);
+
+            ViewData["AllBounties"] = bountiesToDisplay;
+
+
             ViewData["Username"] = user.Username;
 
             return View();

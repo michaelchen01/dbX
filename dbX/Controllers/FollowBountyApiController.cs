@@ -28,7 +28,7 @@ namespace dbX.Controllers
             UserRepository userRepository = new UserRepository();
             User user = userRepository.GetUserByEmail("michael@michael.com");
 
-            if(user.FollowedBounties.Contains(followBounty.BountyId))
+            if(!user.FollowedBounties.Contains(followBounty.BountyId))
             {
                 user.FollowedBounties.Add(followBounty.BountyId);
 
