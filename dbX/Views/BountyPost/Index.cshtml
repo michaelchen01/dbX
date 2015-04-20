@@ -60,6 +60,19 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-12">
+        <h1>
+            Code
+        </h1>
+        <p>
+            <code>
+                @Html.Raw(ViewData["Code"])
+            </code>
+        </p>
+    </div>
+</div>
+
 @{
 
     if (Int32.Parse(ViewData["Owner"].ToString()) == 0)

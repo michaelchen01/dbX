@@ -38,6 +38,7 @@ namespace dbX.Controllers
             ViewData["Coins"] = bounty.Coins;
             ViewData["EndTime"] = bounty.EndTime;
             ViewData["Tags"] = bounty.Tags;
+            ViewData["Code"] = bounty.Code;
 
             return View(bounty);
         }
