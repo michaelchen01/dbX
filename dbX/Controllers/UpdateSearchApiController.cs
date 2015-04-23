@@ -19,6 +19,8 @@ namespace dbX.Controllers
     {
         public string MinimumCoins { get; set; }
         public string MaximumCoins { get; set; }
+        public string DateMin { get; set; }
+        public string DateMax { get; set; }
     }
 
     public class UpdateSearchApiController : ApiController
@@ -71,7 +73,49 @@ namespace dbX.Controllers
                 }
             }
 
-            List<Bounty> query = bountiesToDisplay.OrderByDescending(t => t.Coins).ToList<Bounty>();
+            List<Bounty> finalBounties = new List<Bounty>();
+            foreach(var bounty in bountiesToDisplay)
+            {
+                if(update.DateMin != "")
+                {
+                    DateTime min = DateTime.Parse(update.DateMin);
+
+                    if(update.DateMax != "")
+                    {
+                        // Translate the DateTimes and check if its in range
+                        DateTime max = DateTime.Parse(update.DateMax);
+                        if(DateTime.Compare(bounty.EndTime, min) >= 0 && DateTime.Compare(bounty.EndTime, max) <= 0)
+                        {
+                            finalBounties.Add(bounty);
+                        }
+                    }
+                    else
+                    {
+                        if(DateTime.Compare(bounty.EndTime,min) >= 0)
+                        {
+                            finalBounties.Add(bounty);
+                        }
+                    }
+                }
+                else
+                {
+                    if(update.DateMax != "")
+                    {
+
+                        DateTime max = Convert.ToDateTime(update.DateMax);
+                        if(DateTime.Compare(bounty.EndTime,max) <= 0)
+                        {
+                            finalBounties.Add(bounty);
+                        }
+                    }
+                    else
+                    {
+                        finalBounties.Add(bounty);
+                    }
+                }
+            }
+
+            List<Bounty> query = finalBounties.OrderByDescending(t => t.Coins).ToList<Bounty>();
 
             string json = JsonConvert.SerializeObject(query);
 

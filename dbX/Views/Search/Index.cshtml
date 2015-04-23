@@ -5,11 +5,12 @@
 
 <div class="row">
     <div class="col-md-12" style="text-align:center">
-        <h1 style="font-family:Calibri">Find Bounties</h1>
+        <div class="page-header">
+            <h1 style="font-family:Quicksand-Book">Find Bounties</h1>
+        </div>
     </div>
 </div>
 
-<hr />
 
 <div class="row">
     <div class="col-md-3">
@@ -26,44 +27,23 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="form-group">
-                    <label for="exampleCoinMin">Coin Amount</label>
-                    <input type="min-amount" class="coin-amount-form" id="coin-min" placeholder="Minimum">
+                    <label for="exampleCoinMin"><h4 style="font-family:Quicksand-Book">Coin Amount</h4></label>
+                    <input type="min-amount" class="coin-amount-form" id="coin-min" placeholder="Minimum Coins">
                 </div>
                 <div class="form-group">
-                    <input type="max-amount" class="coin-amount-form" id="coin-max" placeholder="Maximum">
+                    <input type="max-amount" class="coin-amount-form" id="coin-max" placeholder="Maximum Coins">
                 </div>
             </div>
+            <hr/>
             <div class="row">
-                <p><b>Tags</b></p>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="">pointers</label>
+                <p><h4 style="font-family:Quicksand-Book">Post Date</h4></p>
+                <div class="form-group">
+                    <label style="width:100%">Earliest Date</label>
+                    <input type="date" class="coin-amount-form" id="date-min" placeholder="Earliest Date">
                 </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="">java</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="">c++</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="">jquery</label>
-                </div>
-            </div>
-            <div class="row">
-                <p><b>Post Date</b></p>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="">Today</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="">This Week</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="">This Month</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="">This Year</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="">Forever</label>
+                <div class="form-group">
+                    <label style="width:100%">Latest Date</label>
+                    <input type="date" class="coin-amount-form" id="date-max" placeholder="Latest Date">
                 </div>
             </div>
         </div>
@@ -156,10 +136,14 @@
         // Get the data
         var minAmount = $('#coin-min').val();
         var maxAmount = $('#coin-max').val();
+        var dateMin = $('#date-min').val();
+        var dateMax = $('#date-max').val();
 
         var update = {
             'MinimumCoins': minAmount,
-            'MaximumCoins': maxAmount
+            'MaximumCoins': maxAmount,
+            'DateMin': dateMin,
+            'DateMax': dateMax
         }
 
         // Submit AJAX request
