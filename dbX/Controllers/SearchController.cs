@@ -13,6 +13,7 @@ using dbX.Domain.Repository;
 
 namespace dbX.Controllers
 {
+
     public class SearchController : Controller
     {
         // GET: Search
@@ -34,9 +35,9 @@ namespace dbX.Controllers
                 }
             }
 
-            bountiesToDisplay.OrderByDescending(t => t.Coins);
+            List<Bounty> query = bountiesToDisplay.OrderByDescending(t => t.Coins).ToList<Bounty>();
 
-            ViewData["AllBounties"] = bountiesToDisplay;
+            ViewData["AllBounties"] = query;
 
 
             ViewData["Username"] = user.Username;
