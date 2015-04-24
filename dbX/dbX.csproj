@@ -288,6 +288,10 @@
     <Content Include="fonts\quicksand\Quicksand_Dash.otf" />
     <Content Include="fonts\quicksand\Quicksand_Light.otf" />
     <Content Include="fonts\quicksand\Quicksand_Light_Oblique.otf" />
+    <Content Include="fonts\neou-font\Neou-Bold.otf" />
+    <Content Include="fonts\neou-font\Neou-Bold.ttf" />
+    <Content Include="fonts\neou-font\Neou-Thin.otf" />
+    <Content Include="fonts\neou-font\Neou-Thin.ttf" />
     <None Include="Properties\PublishProfiles\dbxprototype.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />

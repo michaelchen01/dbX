@@ -8,6 +8,11 @@
     src: url('../fonts/quicksand/Quicksand_Book.otf');
 }
 
+@font-face{
+    font-family: "neou-thin";
+    src: url('../fonts/neou-font/Neou-Thin.otf');
+}
+
 * {font-family:Quicksand-Book}
 
 select {
@@ -38,11 +43,25 @@ select {
 
 body {
     /*background-color: #3F88C5;*/
-    font-family: Quicksand-Book;
+    font-family: neou-thin;
 }
 
 body h1{
+    /*font-family: Quicksand-Book;*/
+    font-family: neou-thin;
+}
+
+body p{
     font-family: Quicksand-Book;
+    /*font-family: neou-thin;*/
+}
+
+.featured-bounties {
+    font-family:Calibri;
+}
+
+.lead {
+    font-family: Calibri;
 }
 
 
@@ -53,7 +72,8 @@ body h1{
 }
 
 .splash-jumbotron h1{
-    font-family: Quicksand-Book;
+    /*font-family: Quicksand-Book;*/
+    font-family: neou-thin;
 }
 
 .featured-img-profile {
@@ -72,19 +92,21 @@ body h1{
 }
 
 .profile-name-container {
-     font-family: Calibri; 
+    font-family: Calibri;
     text-align:center;
 }
 
 .profile-tab-container {
-    font-family: Calibri;
+    /*font-family: Calibri;*/
+    font-family: neou-thin;
 }
 
 .bounty-pill-list {
 }
 
 .bounty-pill-container {
-    font-family:Calibri;
+    /*font-family: Calibri;*/ 
+    font-family: neou-thin;
     background-color: #F0F8FF;
     margin:2% 5px 1% 5px;
     padding:5px 20px 5px 20px;
@@ -97,7 +119,8 @@ body h1{
 
 .featured-bounties {
     text-align:center;
-    font-family:Quicksand-Book;
+    /*font-family:Quicksand-Book;*/
+    font-family: neou-thin;
     /* background-color: #F49D37;*/
     float:left;
     margin:0 5px 0 5px;
