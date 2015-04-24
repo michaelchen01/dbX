@@ -60,6 +60,7 @@ namespace dbX.Controllers
             User user = userRepository.GetUserByEmail("michael@michael.com");
 
             user.OpenBounties.Add(bounty.Id);
+            user.Coins -= Int32.Parse(submitBounty.Price);
 
             userRepository.UpdateUser(user.Id,user);
 

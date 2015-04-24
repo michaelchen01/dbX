@@ -9,7 +9,7 @@ namespace dbX.Domain.Repository
 {
     interface ISolutionRepository
     {
-        IEnumerable<Solution> GetAllSolutions(string bountyId);
+        IEnumerable<Solution> GetAllSolutions(string userId, string bountyId);
 
         Solution GetSolution(string id, string bountyId);
 

@@ -23,9 +23,12 @@ namespace dbX.Controllers
 
             BountyRepository bountyRepository = new BountyRepository();
             UserRepository userRepository = new UserRepository();
+            SolutionRepository solutionRepository = new SolutionRepository();
 
             User user = userRepository.GetUserByEmail("michael@michael.com");
             Bounty bounty = bountyRepository.GetBounty(id);
+            List<Solution> solutions = solutionRepository.GetAllSolutions(user.Id, bounty.Id).ToList<Solution>();
+            List<Solution> query = solutions.OrderBy(t => t.LastModified).ToList<Solution>();
 
             ViewData["Username"] = user.Username;
 
@@ -39,6 +42,14 @@ namespace dbX.Controllers
             ViewData["EndTime"] = bounty.EndTime;
             ViewData["Tags"] = bounty.Tags;
             ViewData["Code"] = bounty.Code;
+
+            if(user.FollowedBounties.Contains(bounty.Id))
+            {
+                ViewData["Participating"] = 1;
+            }
+
+            ViewData["UserId"] = user.Id;
+            ViewData["Solutions"] = query;
 
             return View(bounty);
         }

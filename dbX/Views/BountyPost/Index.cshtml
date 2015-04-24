@@ -89,19 +89,74 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h1>
+                <h1 style="text-align:center;">
                     Submissions
                 </h1>
-                <p>
-                    answer #1
-                </p>
-                <p>
-                    answer #2
-                </p>
+                <table class="table">
+                    <tr>
+                        <th>Description</th>
+                        <th>Time Submitted</th>
+                    </tr>
+
+                    @foreach (var solution in (ViewData["Solutions"] as List<dbX.Models.Solution>))
+                    {
+                        <tr>
+                            <td>@Html.Raw(solution.Description)</td>
+                            <td>@solution.LastModified.ToShortDateString()</td>
+                        </tr>
+                    }
+                </table>
             </div>
         </div>
     }
 }
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h1 class="modal-title" id="myModalLabel">Submit a Solution</h1>
+            </div>
+            <div class="modal-body">
+                <h1>Description</h1>
+                <div class="quill-wrapper">
+                    <!-- Toolbar for Quill -->
+                    <div id="description-toolbar" class="toolbar">
+                        <button class="ql-bold">Bold</button>
+                        <button class="ql-italic">Italic</button>
+                    </div>
+                    <!-- Editor for Quill -->
+                    <div id="description-editor">
+                        <div>Hi!</div>
+                        <div>Add some background about your bug here.</div>
+                        <div><br></div>
+                    </div>
+                </div>
+                <hr/>
+                <h1>Code</h1>
+                <div class="quill-wrapper">
+                    <!-- Toolbar for Quill -->
+                    <div id="code-toolbar" class="toolbar">
+                        <button class="ql-bold">Bold</button>
+                        <button class="ql-italic">Italic</button>
+                    </div>
+                    <!-- Editor for Quill -->
+                    <div id="code-editor">
+                        <div>Hi!</div>
+                        <div>Copy your code here!</div>
+                        <div><br></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="submit-solution-button" type="button" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script language="javascript">
     function followBounty(bountyId) {
@@ -128,15 +183,89 @@
 
     }
 
+    function submitSolution(descriptionEditor, codeEditor) {
+
+        var solutionDescription = descriptionEditor.getHTML();
+        var solutionCode = codeEditor.getHTML();
+
+        var userId = '@Html.ViewData["UserId"]';
+        var bountyId = '@ViewData["Id"]';
+
+        var solution = {
+            'UserId': userId,
+            'BountyId': bountyId,
+            'Description': solutionDescription,
+            'Code': solutionCode
+        }
+
+        $.ajax({
+            url: '../api/SubmitBountySolutionApi',
+            type: 'POST',
+            data: JSON.stringify(solution),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (response) {
+                console.log('Web Api Responds with:', response);
+            },
+            error: function (exception) {
+                alert('Exeption:' + exception);
+            }
+        });
+
+        alert('Successfully submitted solution!');
+
+    }
+
     $(document).ready(function () {
+
+        if(@ViewData["Participating"] == 1) {
+            $('#participateButton').html("Submit a solution");
+            $('#participateButton').attr('data-toggle','modal');
+            $('#participateButton').attr('data-target','#myModal');
+            $('#participateButton').attr("id","solution-button");
+        }
+
+        // Initialize Modal
+        $('#myModal').modal({
+            keyboard: true
+        });
+        $('#myModal').modal('hide');
+
+
+        // Create an instance of the background editor
+        var descriptionEditor = new Quill('#description-editor', {
+            modules: {
+                'toolbar': { container: '#description-toolbar' }
+            },
+            theme: 'snow'
+        });
+
+        var codeEditor = new Quill('#code-editor', {
+            modules: {
+                'toolbar': { container: '#code-toolbar' }
+            },
+            theme: 'snow'
+        });
+
         $('#participateButton').click(function () {
 
             var bountyId = '@ViewData["Id"]';
 
             followBounty(bountyId);
 
-            $('#participateButton').html("You are participating!");
+            $('#participateButton').html("Submit a solution");
+            $('#participateButton').attr('data-toggle','modal');
+            $('#participateButton').attr('data-target','#myModal');
+            $('#participateButton').attr('id','solution-button');
         });
+
+        $('#solution-button').click(function() {
+            $('#myModal').modal('toggle');
+        });
+
+        $('#submit-solution-button').click(function () {
+            submitSolution(descriptionEditor,codeEditor);
+        })
 
     });
 </script>

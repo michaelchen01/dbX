@@ -70,11 +70,14 @@ namespace dbX.Domain.Repository
         /// Method to return all the users from the collection.
         /// </summary>
         /// <returns>Enumerable of the all the users.</returns>
-        public IEnumerable<Solution> GetAllSolutions(string bountyId)
+        public IEnumerable<Solution> GetAllSolutions(string userId, string bountyId)
         {
             try
             {
-                IMongoQuery query = Query.EQ("BountyId", bountyId);
+                IMongoQuery query = Query.And(
+                    Query.EQ("BountyId", bountyId),
+                    Query.EQ("UserId", userId)
+                );
                 return solutions.Find(query).ToList<Solution>();
             }
             catch (Exception e)

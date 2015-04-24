@@ -221,6 +221,7 @@
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\RemoveCoinsApiController.cs" />
     <Compile Include="Controllers\SubmitBountyApiController.cs" />
+    <Compile Include="Controllers\SubmitBountySolutionApiController.cs" />
     <Compile Include="Controllers\UpdateSearchApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
