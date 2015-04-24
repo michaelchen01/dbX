@@ -93,14 +93,11 @@ namespace dbX.Domain.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Returns User Object if found.</returns>
-        public Solution GetSolution(string id, string bountyId)
+        public Solution GetSolution(string id)
         {
             try
             {
-                IMongoQuery query = Query.And(
-                    Query.EQ("_id", id),
-                    Query.EQ("BountyId",bountyId)
-                );
+                IMongoQuery query = Query.EQ("_id", id);
 
                 return solutions.Find(query).FirstOrDefault();
             }

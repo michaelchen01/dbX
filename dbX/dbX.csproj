@@ -226,6 +226,7 @@
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\ViewSolutionController.cs" />
     <Compile Include="Domain\Repository\BountyRepository.cs" />
     <Compile Include="Domain\Repository\IBountyRepository.cs" />
     <Compile Include="Domain\Repository\ISolutionRepository.cs" />
@@ -334,6 +335,7 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\BountyNew\Index.cshtml" />
     <Content Include="Views\LogIn\Index.cshtml" />
+    <Content Include="Views\ViewSolution\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

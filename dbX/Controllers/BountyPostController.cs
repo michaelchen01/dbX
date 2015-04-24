@@ -47,6 +47,10 @@ namespace dbX.Controllers
             {
                 ViewData["Participating"] = 1;
             }
+            else
+            {
+                ViewData["Participating"] = 0;
+            }
 
             ViewData["UserId"] = user.Id;
             ViewData["Solutions"] = query;

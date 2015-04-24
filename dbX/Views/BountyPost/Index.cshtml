@@ -96,6 +96,7 @@
                     <tr>
                         <th>Description</th>
                         <th>Time Submitted</th>
+                        <th></th>
                     </tr>
 
                     @foreach (var solution in (ViewData["Solutions"] as List<dbX.Models.Solution>))
@@ -103,6 +104,7 @@
                         <tr>
                             <td>@Html.Raw(solution.Description)</td>
                             <td>@solution.LastModified.ToShortDateString()</td>
+                            <td>@Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "ViewSolution", new { solutionId = solution.Id }, new { @class = "btn btn-primary btn-xs" })</td>
                         </tr>
                     }
                 </table>
@@ -218,6 +220,7 @@
 
     $(document).ready(function () {
 
+        
         if(@ViewData["Participating"] == 1) {
             $('#participateButton').html("Submit a solution");
             $('#participateButton').attr('data-toggle','modal');
@@ -247,7 +250,7 @@
             theme: 'snow'
         });
 
-        $('#participateButton').click(function () {
+        $(document).on('click','#participateButton',function () {
 
             var bountyId = '@ViewData["Id"]';
 

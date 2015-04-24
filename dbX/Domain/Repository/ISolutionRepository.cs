@@ -11,7 +11,7 @@ namespace dbX.Domain.Repository
     {
         IEnumerable<Solution> GetAllSolutions(string userId, string bountyId);
 
-        Solution GetSolution(string id, string bountyId);
+        Solution GetSolution(string id);
 
         Solution AddSolution(Solution newUser);
 
