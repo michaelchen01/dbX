@@ -1,11 +1,16 @@
 ﻿<div class="splash">
     <div class="jumbotron splash-jumbotron">
-        <h1>Welcome to dbX</h1>
-        <p class="lead">
+        <h1 data-step="1" data-intro=
+            "Welcome to dbX, we're glad you could join us! Let's take a quick tour to tell you what we're all about!"
+            >Welcome to dbX</h1>
+        <p data-step="2" data-intro=
+           "As we mentioned, dbX is all about exchange. Our website runs on internal virual currency that you can earn by solving other's debugging problems or purchase with real money.
+           Likewise, you can post your own debugging questions that others can solve for a bounty that you set." 
+           class="lead">
             dbX is a community modeled bounty-based debugging exchange network. You can get your debugging problems sovled here, or you can solve other's
             debugging issues and earn cash!
         </p>
-        <p><a href="" class="btn btn-success btn-lg">Learn more &raquo;</a></p>
+        <p><a href="javascript:void(0);" onclick="javascript:introJs().start()" class="btn btn-success btn-lg">Learn more &raquo;</a></p>
     </div>
 
     <hr />
@@ -18,7 +23,7 @@
 
     <hr />
 
-    <div class="row">
+    <div class="row" data-step="8" data-intro = "Lastly, here are some bounties that we recommend looking at - they're loaded with coins!">
         @{
             foreach (var bounty in (ViewData["FeaturedBounties"] as List<dbX.Models.Bounty>))
             {
@@ -29,12 +34,13 @@
                         <p>
                             <font size="5">@bounty.Coins Coins</font>
                         </p>
-                        <p> @{DateTime currentDate = DateTime.Now;
+                        <p>
+                            @{DateTime currentDate = DateTime.Now;
                             TimeSpan timeLeft = bounty.EndTime.Subtract(currentDate);}
                             <font size="5">@timeLeft.Days Days Left</font>
                         </p>
-                        <hr/>
-                        @Html.ActionLink(HttpUtility.HtmlDecode("View Details &raquo;"), "Index", "BountyPost", new { bountyId = bounty.Id, owner = 0}, new { @class = "btn btn-primary" })
+                        <hr />
+                        @Html.ActionLink(HttpUtility.HtmlDecode("View Details &raquo;"), "Index", "BountyPost", new { bountyId = bounty.Id, owner = 0 }, new { @class = "btn btn-primary" })
                     </div>
                 </div>
             }

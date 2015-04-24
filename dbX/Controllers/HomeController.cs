@@ -27,16 +27,20 @@ namespace dbX.Controllers
 
             int bountyCount = 0;
             List<Bounty> featuredBounties = new List<Bounty>();
-            foreach(var bounty in bounties)
+            List<Bounty> query = bounties.OrderByDescending(t => t.Coins).ToList<Bounty>();
+            foreach(var bounty in query)
             {
-                if(bountyCount < 3)
+                if(bountyCount < 3 && !user.OpenBounties.Contains(bounty.Id))
                 {
                     featuredBounties.Add(bounty);
                     bountyCount++;
                 }
                 else
                 {
-                    break;
+                    if(bountyCount >= 3)
+                    {
+                        break;
+                    }
                 }
             }
 

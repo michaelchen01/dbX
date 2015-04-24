@@ -9,11 +9,12 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/quill")
+    @Scripts.Render("~/bundles/intro")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top dbx-nav">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-header" data-step="7" data-intro = "Remember, you can always get to the home page through here.">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -23,14 +24,19 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Post", "Index", "BountyNew", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Profile", "Index", "Profile", new { area = ""}, null)</li>
-                    <li>@Html.ActionLink("Search", "Index", "Search", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Marketplace", "Index", "Marketplace", new { area = "" }, null)</li>
+                    <li data-step="4" data-intro = "You can post your own bounty questions here.">@Html.ActionLink("Post", "Index", "BountyNew", new { area = "" }, null)</li>
+                    <li data-step="5" data-intro = "Or search for others here.">@Html.ActionLink("Search", "Index", "Search", new { area = "" }, null)</li>
+                    <li data-step="6" data-intro = 
+                        "And if you ever want to buy more coins, or cash out your coins for real money, this is the place."
+                        >@Html.ActionLink("Marketplace", "Index", "Marketplace", new { area = "" }, null)</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                    
-                     <li>@Html.ActionLink(ViewData["Username"].ToString(), "Index", "Profile", new { area = "" }, null)</li>
+                    <li data-step="3" data-intro=
+                        "You can view your profile here! Your profile has important information such as how many coins you currently have, which bounties you're following,
+                        you own, or you have solved. Followed bounties are those you've decided to try and solve, open bounties are ones that you own, and solved bounties
+                        and those that you've already submitted a solution for."
+                        >@Html.ActionLink(ViewData["Username"].ToString(), "Index", "Profile", new { area = "" }, null)</li>
                 </ul>
             </div>
         </div>

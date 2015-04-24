@@ -24,12 +24,17 @@ namespace dbX
                     "~/Scripts/quill.js",
                     "~/Scripts/quill.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/intro").Include(
+                    "~/Scripts/intro.js"
+                    ));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/styles.css",
                       "~/Content/quill.base.css",
-                      "~/Content/quill.snow.css"));
+                      "~/Content/quill.snow.css",
+                      "~/Content/introjs.css"));
         }
     }
 }
