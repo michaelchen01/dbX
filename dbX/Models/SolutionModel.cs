@@ -10,14 +10,18 @@ using MongoDB.Driver.Linq;
 
 namespace dbX.Models
 {
-    public class SolutionModel
+    public class Solution
     {
         public string Id { get; set; }
 
         public string UserId { get; set; }
 
+        public string BountyId { get; set; }
+
         public string Description { get; set; }
 
         public string Code { get; set; }
+
+        public DateTime LastModified { get; set; }
     }
 }

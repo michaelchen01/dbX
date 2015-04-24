@@ -227,7 +227,9 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Domain\Repository\BountyRepository.cs" />
     <Compile Include="Domain\Repository\IBountyRepository.cs" />
+    <Compile Include="Domain\Repository\ISolutionRepository.cs" />
     <Compile Include="Domain\Repository\IUserRepository.cs" />
+    <Compile Include="Domain\Repository\SolutionRepository.cs" />
     <Compile Include="Domain\Repository\UserRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
