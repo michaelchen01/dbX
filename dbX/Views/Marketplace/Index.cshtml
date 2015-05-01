@@ -25,6 +25,7 @@
             <h2>CASH OUT</h2>
             <hr />
             <p>You have: @ViewData["Coins"] COINS</p>
+            <p>The current exchange rate is $0.02 per coin.</p>
             <label for="amount">Amount:</label>
             <input type="text" class="form-control" id="amount">
             <p>Select Destination:</p>
@@ -147,13 +148,13 @@
         $('#cash-out').click(function () {
             var coins = $('#amount').val();
 
-            if(coins != null && @ViewData["Coins"] >= coins)
+            if(coins != null && @ViewData["Coins"] >= coins && coins >= 0)
             {
                 removeCoins(coins);
             }
             else
             {
-                alert("Please enter a valid coin amount!");
+                alert("Please enter a valid coin amount! Valid coin amounts are no greater than your current coin balance, and are not negative.");
             }
         });
 

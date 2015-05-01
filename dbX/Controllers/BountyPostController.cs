@@ -52,6 +52,15 @@ namespace dbX.Controllers
                 ViewData["Participating"] = 0;
             }
 
+            if(user.SolvedBounties.Contains(bounty.Id))
+            {
+                ViewData["Solved"] = 1;
+            }
+            else
+            {
+                ViewData["Solved"] = 0;
+            }
+
             ViewData["UserId"] = user.Id;
             ViewData["Solutions"] = query;
 

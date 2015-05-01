@@ -27,10 +27,16 @@ namespace dbX.Controllers
         [HttpPost]
         public string Post([FromBody]BountySolution bountySolution)
         {
+            UserRepository userRepository = new UserRepository();
             BountyRepository bountyRepository = new BountyRepository();
             SolutionRepository solutionRepository = new SolutionRepository();
 
             Solution solution = new Solution();
+
+            // Update User 
+            User user = userRepository.GetUser(bountySolution.UserId);
+            user.SolvedBounties.Add(bountySolution.BountyId);
+            userRepository.UpdateUser(user.Id, user);
 
             solution.BountyId = bountySolution.BountyId;
             solution.UserId = bountySolution.UserId;
