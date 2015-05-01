@@ -36,7 +36,7 @@
             </div>
             <hr/>
             <div class="row">
-                <p><h4 style="font-family:Quicksand-Book">Due Date</h4></p>
+                <p><h4 style="font-family:Quicksand-Book">Due Date Range</h4></p>
                 <div class="form-group">
                     <label style="width:100%">Earliest Date</label>
                     <input type="date" class="coin-amount-form" id="date-min" placeholder="Earliest Date">
@@ -44,6 +44,13 @@
                 <div class="form-group">
                     <label style="width:100%">Latest Date</label>
                     <input type="date" class="coin-amount-form" id="date-max" placeholder="Latest Date">
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <p><h4 style="font-family:Quicksand-Book">Tags</h4></p>
+                <div class="form-group">
+                    <textarea type="text" id="search-tags" placeholder="Comma separated tags"></textarea>
                 </div>
             </div>
         </div>
@@ -138,12 +145,14 @@
         var maxAmount = $('#coin-max').val();
         var dateMin = $('#date-min').val();
         var dateMax = $('#date-max').val();
+        var tags = $('#search-tags').val().split(',');
 
         var update = {
             'MinimumCoins': minAmount,
             'MaximumCoins': maxAmount,
             'DateMin': dateMin,
-            'DateMax': dateMax
+            'DateMax': dateMax,
+            'Tags': tags
         }
 
         // Submit AJAX request

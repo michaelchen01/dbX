@@ -21,6 +21,7 @@ namespace dbX.Controllers
         public string MaximumCoins { get; set; }
         public string DateMin { get; set; }
         public string DateMax { get; set; }
+        public List<string> Tags { get; set; }
     }
 
     public class UpdateSearchApiController : ApiController
@@ -116,8 +117,27 @@ namespace dbX.Controllers
             }
 
             List<Bounty> query = finalBounties.OrderByDescending(t => t.Coins).ToList<Bounty>();
+            List<Bounty> newQuery = new List<Bounty>();
+            string json;
 
-            string json = JsonConvert.SerializeObject(query);
+            if(update.Tags[0] != "")
+            {
+                // Tag Filtering
+                foreach (var bounty in query)
+                {
+                    bool hasMatch = bounty.Tags.Any(x => update.Tags.Any(y => y.Equals(x, StringComparison.OrdinalIgnoreCase)));
+                    if (hasMatch)
+                    {
+                        newQuery.Add(bounty);
+                    }
+                }
+
+                json = JsonConvert.SerializeObject(newQuery);
+            }
+            else
+            {
+                json = JsonConvert.SerializeObject(query);
+            }
 
             return json;
         }
