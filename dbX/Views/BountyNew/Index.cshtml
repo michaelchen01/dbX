@@ -10,17 +10,17 @@
 
 <div class="row">
     <div class="col-md-8">
-        <h1>Background</h1>
+        <h1>Task</h1>
         <div class="quill-wrapper">
             <!-- Toolbar for Quill -->
-            <div id="background-toolbar" class="toolbar">
+            <div id="task-toolbar" class="toolbar">
                 <button class="ql-bold">Bold</button>
                 <button class="ql-italic">Italic</button>
             </div>
             <!-- Editor for Quill -->
-            <div id="background-editor">
+            <div id="task-editor">
                 <div>Hi!</div>
-                <div>Add some background about your bug here.</div>
+                <div>Define the task for the bounty hunters here.</div>
                 <div><br></div>
             </div>
         </div>
@@ -40,20 +40,6 @@
 
 <div class="row">
     <div class="col-md-8">
-        <h1>Task</h1>
-        <div class="quill-wrapper">
-            <!-- Toolbar for Quill -->
-            <div id="task-toolbar" class="toolbar">
-                <button class="ql-bold">Bold</button>
-                <button class="ql-italic">Italic</button>
-            </div>
-            <!-- Editor for Quill -->
-            <div id="task-editor">
-                <div>Hi!</div>
-                <div>Define the task for the bounty hunters here.</div>
-                <div><br></div>
-            </div>
-        </div>
         <h1>Code</h1>
         <div class="quill-wrapper">
             <!-- Toolbar for Quill -->
@@ -112,13 +98,13 @@
 <script language="javascript">
     $(document).ready(function () {
 
-        // Create an instance of the background editor
-        var backgroundEditor = new Quill('#background-editor', {
-            modules: {
-                'toolbar': { container: '#background-toolbar' }
-            },
-            theme: 'snow'
-        });
+        //// Create an instance of the background editor
+        //var backgroundEditor = new Quill('#background-editor', {
+        //    modules: {
+        //        'toolbar': { container: '#background-toolbar' }
+        //    },
+        //    theme: 'snow'
+        //});
 
         var taskEditor = new Quill('#task-editor', {
             modules: {

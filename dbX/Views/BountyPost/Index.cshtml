@@ -11,20 +11,28 @@
 
 <div class="row">
     <div class="col-md-8" style="text-align:left">
-        <h1>Background</h1>
-        <p style="max-width: none;">@Html.Raw(ViewData["Background"])</p>
-        <p style="max-width: none;">
-            <font size="4">
-                @foreach (var item in (ViewData["Tags"] as List<string>))
-                {
-                    <code>
-                        @item
-                    </code>
-                }
-            </font>
-        </p>
+        <div class="row">
+            <h1>Task</h1>
+            <p>@Html.Raw(ViewData["Background"])</p>
+            <p>@Html.Raw(ViewData["Task"])</p>
+        </div>      
     </div>
     <div class="col-md-4" style="text-align:center">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color: lightgray">
+                <h3><b>Tags</b></h3>
+            </div>
+            <p style="max-width: none;">
+                <font size="4">
+                    @foreach (var item in (ViewData["Tags"] as List<string>))
+                    {
+                        <code>
+                            @item
+                        </code>
+                    }
+                </font>
+            </p>
+        </div>
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightgray">
                 <h3><b>Price</b></h3>
@@ -33,19 +41,9 @@
                 <font size="5">@ViewData["Coins"]</font>
             </div>
         </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-8" style="text-align:left">
-        <h1>Task</h1>
-        <p>@Html.Raw(ViewData["Task"])</p>
-    </div>
-    <div class="col-md-4" style="text-align: center"> 
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightgray">
-                <h3><b>
-                    Time Left
-                </b></h3>
+                <h3><b>Time Left</b></h3>
             </div>
             <div class="panel-body" style="align-content:center">
                 <font size="5">
@@ -59,19 +57,14 @@
         </div>
     </div>
 </div>
-
 <div class="row">
-    <div class="col-md-12">
-        <h1>
-            Code
-        </h1>
-        <p>
-            <code>
-                @Html.Raw(ViewData["Code"])
-            </code>
-        </p>
-    </div>
-</div>
+    <h1>Code</h1>
+    <p>
+        <code>
+            @Html.Raw(ViewData["Code"])
+        </code>
+    </p>
+</div>  
 
 @{
 
