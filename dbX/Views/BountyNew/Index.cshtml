@@ -40,18 +40,8 @@
 <div class="row">
     <div class="col-md-8">
         <h1>Code</h1>
-        <div class="quill-wrapper">
-            <!-- Toolbar for Quill -->
-            <div id="code-toolbar" class="toolbar">
-                <button class="ql-bold"><b>B</b></button>
-                <button class="ql-italic"><i>I</i></button>
-            </div>
-            <!-- Editor for Quill -->
-            <div id="code-editor">
-                <!-- It would be great if we could add placeholders-->
-                <div><br></div>
-                <div><br></div>
-            </div>
+        <div class="quill-wrapper" style="font-family:Courier New, Courier, monospace">
+            <div id="code-editor" class="input-code-editor" style="height: 500px; width: 500px;">some text</div>
         </div>
     </div>
     <div class="col-sm-4">
@@ -100,6 +90,10 @@
 <script language="javascript">
     $(document).ready(function () {
 
+        var codeEditor = ace.edit("code-editor");
+        codeEditor.getSession().setMode("ace/mode/c_cpp");
+        document.getElementById('code-editor').style.fontSize = '16px';
+
         //// Create an instance of the background editor
         //var backgroundEditor = new Quill('#background-editor', {
         //    modules: {
@@ -111,13 +105,6 @@
         var taskEditor = new Quill('#task-editor', {
             modules: {
                 'toolbar': { container: '#task-toolbar' }
-            },
-            theme: 'snow'
-        });
-
-        var codeEditor = new Quill('#code-editor', {
-            modules: {
-                'toolbar': { container: '#code-toolbar' }
             },
             theme: 'snow'
         });
@@ -136,7 +123,7 @@
                 alert("Please submit valid duration");
             var bountyEndTime = new Date(today + (totalHours * 60 * 60 * 1000));
             var bountyTags = $('#bountyTags').val().split(',');
-            var bountyCode = codeEditor.getHTML();
+            var bountyCode = codeEditor.getSession().getValue();
             // Need to add dummy value for background because it is still part of model
             var bountyBackground = "";
             // Need to add dummy value for difficulty because it is still part of model

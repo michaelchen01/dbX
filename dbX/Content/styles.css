@@ -13,7 +13,9 @@
     src: url('../fonts/neou-font/Neou-Thin.otf');
 }
 
-* {font-family:Quicksand-Book}
+body {
+    font-family: Quicksand-Book
+}
 
 select {
     padding:3px;
@@ -202,4 +204,8 @@ label {
     margin:20px 10px 10px 10px;
     padding: 10px 20px 10px 20px;
     font-family:Quicksand-Book;
+}
+
+.input-code-editor {
+    font-family: Courier New, Courier, monospace;
 }

@@ -59,11 +59,9 @@
 </div>
 <div class="row">
     <h1>Code</h1>
-    <p>
-        <code>
-            @Html.Raw(ViewData["Code"])
-        </code>
-    </p>
+    <div class="quill-wrapper" style="font-family:Courier New, Courier, monospace">
+        <div id="code-display-editor" class="input-code-editor" style="height: 500px; width: 500px;"></div>
+    </div>
 </div>  
 
 @{
@@ -213,7 +211,12 @@
 
     $(document).ready(function () {
 
-        
+        var codeEditor = ace.edit("code-display-editor");
+        codeEditor.setValue('@ViewData["Code"]');
+        codeEditor.getSession().setMode("ace/mode/c_cpp");
+        document.getElementById('code-display-editor').style.fontSize = '16px';
+        codeEditor.setReadOnly(true)
+
         if(@ViewData["Participating"] == 1) {
             $('#participateButton').html("Submit a solution");
             $('#participateButton').attr('data-toggle','modal');
