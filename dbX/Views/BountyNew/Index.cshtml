@@ -49,7 +49,7 @@
     <div class="col-md-8">
         <h1>Code</h1>
         <div class="quill-wrapper" style="font-family:Courier New, Courier, monospace">
-            <div id="code-editor" class="input-code-editor" style="height: 500px; width: 500px;">some text</div>
+            <div id="code-editor" class="input-code-editor" style="width: 100%;">// Insert your code here!</div>
         </div>
     </div>
     <div class="col-sm-4">
@@ -101,6 +101,10 @@
         var codeEditor = ace.edit("code-editor");
         codeEditor.getSession().setMode("ace/mode/c_cpp");
         document.getElementById('code-editor').style.fontSize = '16px';
+        codeEditor.setOptions({
+            minLines:10,
+            maxLines: Infinity
+        });
 
         //// Create an instance of the background editor
         //var backgroundEditor = new Quill('#background-editor', {

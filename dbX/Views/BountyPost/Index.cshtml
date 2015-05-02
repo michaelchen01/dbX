@@ -15,6 +15,14 @@
             <h1>Task</h1>
             <p>@Html.Raw(ViewData["Background"])</p>
             <p>@Html.Raw(ViewData["Task"])</p>
+        </div>  
+        <div class="row">
+            <h1>Code</h1>
+            <div class="quill-wrapper" style="font-family:Courier New, Courier, monospace">
+
+                <div id="code-display-editor" class="input-code-editor" style="height: 500px; width: 100%;"></div>
+
+            </div>
         </div>      
     </div>
     <div class="col-md-4" style="text-align:center">
@@ -57,12 +65,6 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <h1>Code</h1>
-    <div class="quill-wrapper" style="font-family:Courier New, Courier, monospace">
-        <div id="code-display-editor" class="input-code-editor" style="height: 500px; width: 500px;"></div>
-    </div>
-</div>  
 
 @{
 
@@ -211,8 +213,10 @@
 
     $(document).ready(function () {
 
+        var code = '@Html.Raw(ViewData["Code"])';
+
         var codeEditor = ace.edit("code-display-editor");
-        codeEditor.setValue('@ViewData["Code"]');
+        codeEditor.setValue(code);
         codeEditor.getSession().setMode("ace/mode/c_cpp");
         document.getElementById('code-display-editor').style.fontSize = '16px';
         codeEditor.setReadOnly(true)

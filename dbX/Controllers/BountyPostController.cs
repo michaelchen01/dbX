@@ -41,7 +41,7 @@ namespace dbX.Controllers
             ViewData["Coins"] = bounty.Coins;
             ViewData["EndTime"] = bounty.EndTime;
             ViewData["Tags"] = bounty.Tags;
-            ViewData["Code"] = bounty.Code;
+            ViewData["Code"] = bounty.Code.Replace("\n", @"\n").Replace("\r",@"\r");
 
             if(user.FollowedBounties.Contains(bounty.Id))
             {
