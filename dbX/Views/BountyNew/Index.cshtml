@@ -14,13 +14,12 @@
         <div class="quill-wrapper">
             <!-- Toolbar for Quill -->
             <div id="task-toolbar" class="toolbar">
-                <button class="ql-bold">Bold</button>
-                <button class="ql-italic">Italic</button>
+                <button class="ql-bold"><B>B</B></button>
+                <button class="ql-italic"><I>I</I></button>
             </div>
             <!-- Editor for Quill -->
             <div id="task-editor">
-                <div>Hi!</div>
-                <div>Define the task for the bounty hunters here.</div>
+                <div><br></div>
                 <div><br></div>
             </div>
         </div>
@@ -44,18 +43,18 @@
         <div class="quill-wrapper">
             <!-- Toolbar for Quill -->
             <div id="code-toolbar" class="toolbar">
-                <button class="ql-bold">Bold</button>
-                <button class="ql-italic">Italic</button>
+                <button class="ql-bold"><b>B</b></button>
+                <button class="ql-italic"><i>I</i></button>
             </div>
             <!-- Editor for Quill -->
             <div id="code-editor">
-                <div>Hi!</div>
-                <div>Copy your code here!</div>
+                <!-- It would be great if we could add placeholders-->
+                <div><br></div>
                 <div><br></div>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-sm-4">
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightgray">
                 <h3><b>Duration</b></h3>
@@ -63,14 +62,7 @@
             <div class="panel-body" style="align-content:center">
                 <input id="bountyEndDays" class="bountyPriceInput" type="text" placeholder="Enter days" />
                 <input id="bountyEndHours" class="bountyPriceInput" type="text" placeholder="Enter hours." />
-                <h4 id="totalHours" style="font-family:Quicksand-Book"> 
-                    <script language="javascript"> 
-                        $("bountyEndDays").change(function () { 
-                            var totalHours = $('#bountytitle').val() * 24 + $('#bountyEndHours').val();
-                            str += $("totalHours").text() + totalHours;
-                            $("totalHours").text(str)
-                        });
-                    </script> 
+                <h4 id="totalHours" style="font-family:Quicksand-Book">
                 </h4> 
             </div>
         </div>
@@ -82,7 +74,7 @@
                 <input id="bountyTags" class="bountyPriceInput" type="text" placeholder="Write tags separated by commas" />
             </div>
         </div>
-        <div class="panel panel-default">
+        <!---<div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightgray">
                 <h3><b>Difficulty</b></h3>
             </div>
@@ -93,7 +85,7 @@
                     <option value="Hard">Hard</option>
                 </select>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 <hr/>
@@ -132,18 +124,23 @@
 
         function submitBounty() {
             // Get all the info
+          
             var bountyTitle = $('#bountyTitle').val();
-            var bountyBackground = backgroundEditor.getHTML();
             var bountyTask = taskEditor.getHTML();
             var bountyPrice = $('#bountyPrice').val();
+            if (isNaN(bountyPrice) || bountyPrice < 0)
+                alert("Must set valid bounty price");
             var today = Date.now();
-            var totalHours = $('#bountytitle').val() * 24 + $('#bountyEndHours').val();
-            var bountyEndTime = today.setHours(today.getHours() + totalHours);
-            var bountyEndTime = $('#bountyEndTime').val();
+            var totalHours = parseInt($('#bountyEndDays').val()) * 24 + parseInt($('#bountyEndHours').val());
+            if (isNaN(totalHours) || totalHours < 0)
+                alert("Please submit valid duration");
+            var bountyEndTime = new Date(today + (totalHours * 60 * 60 * 1000));
             var bountyTags = $('#bountyTags').val().split(',');
-            var bountyDifficulty = $('#bountyDifficulty').val();
             var bountyCode = codeEditor.getHTML();
-
+            // Need to add dummy value for background because it is still part of model
+            var bountyBackground = "";
+            // Need to add dummy value for difficulty because it is still part of model
+            var bountyDifficulty = "Hard";
             // Store it in a JSON object
             var bounty = {
                 'Title': bountyTitle,
@@ -181,5 +178,24 @@
             submitBounty();
         });
 
+        function calculateHours() {
+            var hours = parseInt($('#bountyEndHours').val());
+            if (isNaN(hours) || hours < 0)
+                hours = 0;
+            var days = parseInt($('#bountyEndDays').val());
+            if (isNaN(days) || days < 0)
+                days = 0;
+            var totalHours = days * 24 + hours;
+            str = "Total Hours: " + totalHours.toString();
+            $("#totalHours").text(str);
+        }
+
+        $("#bountyEndDays").on('input propertychange', function () {
+            calculateHours();
+        });
+
+        $("#bountyEndHours").on('input propertychange', function () {
+            calculateHours();
+        });
     });
 </script>
