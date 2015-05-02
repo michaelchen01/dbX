@@ -14,12 +14,20 @@
         <div class="quill-wrapper">
             <!-- Toolbar for Quill -->
             <div id="task-toolbar" class="toolbar">
-                <button class="ql-bold"><B>B</B></button>
-                <button class="ql-italic"><I>I</I></button>
+                <!-- Add font size dropdown --> 
+                <select class="ql-size">
+                    <option value="10px">Small</option>
+                    <option value="13px" selected>Normal</option>
+                    <option value="18px">Large</option>
+                    <option value="32px">Huge</option>
+                </select>
+                <!-- Add buttons -->
+                <button class="ql-bold"><b>B</b></button>
+                <button class="ql-italic">I</button>
+                <button class="ql-underline"><u>U</u></button>
             </div>
             <!-- Editor for Quill -->
             <div id="task-editor">
-                <div><br></div>
                 <div><br></div>
             </div>
         </div>
@@ -43,8 +51,17 @@
         <div class="quill-wrapper">
             <!-- Toolbar for Quill -->
             <div id="code-toolbar" class="toolbar">
+                <!-- Add font size dropdown -->
+                <select class="ql-size">
+                    <option value="10px">Small</option>
+                    <option value="13px" selected>Normal</option>
+                    <option value="18px">Large</option>
+                    <option value="32px">Huge</option>
+                </select>
+                <!-- Add buttons -->
                 <button class="ql-bold"><b>B</b></button>
-                <button class="ql-italic"><i>I</i></button>
+                <button class="ql-italic">I</button>
+                <button class="ql-underline"><u>U</u></button>
             </div>
             <!-- Editor for Quill -->
             <div id="code-editor">
@@ -110,7 +127,7 @@
 
         var taskEditor = new Quill('#task-editor', {
             modules: {
-                'toolbar': { container: '#task-toolbar' }
+                'toolbar': { container: '#task-toolbar' }     
             },
             theme: 'snow'
         });
