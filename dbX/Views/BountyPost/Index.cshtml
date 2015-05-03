@@ -20,7 +20,7 @@
             <h1>Code</h1>
             <div class="quill-wrapper" style="font-family:Courier New, Courier, monospace">
 
-                <div id="code-display-editor" class="input-code-editor" style="height: 500px; width: 100%;"></div>
+                <div id="code-display-editor" class="input-code-editor" style="width: 100%;"></div>
 
             </div>
         </div>      
@@ -63,6 +63,12 @@
                 </font>
             </div>
         </div>
+        @{
+            if (Int32.Parse(ViewData["Owner"].ToString()) == 1)
+            {
+                @Html.ActionLink(HttpUtility.HtmlDecode("Edit Bounty &raquo;"), "Index", "BountyEdit", new { bountyId = ViewData["Id"]}, new { @class = "btn btn-warning btn-lg center-block" })
+            }
+}
     </div>
 </div>
 
@@ -78,29 +84,40 @@
     }
     else
     {
-        <hr />
-
+        <hr />  
+    
         <div class="row">
             <div class="col-md-12">
                 <h1 style="text-align:center;">
                     Submissions
                 </h1>
-                <table class="table">
-                    <tr>
-                        <th>Description</th>
-                        <th>Time Submitted</th>
-                        <th></th>
-                    </tr>
 
-                    @foreach (var solution in (ViewData["Solutions"] as List<dbX.Models.Solution>))
+                @{
+                    if ((ViewData["Solutions"] as List<dbX.Models.Solution>).Count == 0)
                     {
-                        <tr>
-                            <td>@Html.Raw(solution.Description)</td>
-                            <td>@solution.LastModified.ToShortDateString()</td>
-                            <td>@Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "ViewSolution", new { solutionId = solution.Id }, new { @class = "btn btn-primary btn-xs" })</td>
-                        </tr>
+                        <code>No submitted solutions yet!</code>
                     }
-                </table>
+                    else
+                    {
+                        <table class="table">
+                            <tr>
+                                <th>Description</th>
+                                <th>Time Submitted</th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var solution in (ViewData["Solutions"] as List<dbX.Models.Solution>))
+                            {
+                                <tr>
+                                    <td>@Html.Raw(solution.Description)</td>
+                                    <td>@solution.LastModified.ToShortDateString()</td>
+                                    <td>@Html.ActionLink(HttpUtility.HtmlDecode("View"), "Index", "ViewSolution", new { solutionId = solution.Id }, new { @class = "btn btn-primary btn-xs" })</td>
+                                </tr>
+                            }
+                        </table>
+                    }
+}
+
             </div>
         </div>
     }
@@ -219,7 +236,13 @@
         codeEditor.setValue(code);
         codeEditor.getSession().setMode("ace/mode/c_cpp");
         document.getElementById('code-display-editor').style.fontSize = '16px';
-        codeEditor.setReadOnly(true)
+        codeEditor.setReadOnly(true);
+        codeEditor.getSession().setUseWrapMode(true);
+
+        codeEditor.setOptions({
+            minLines:10,
+            maxLines: Infinity
+        });
 
         if(@ViewData["Participating"] == 1) {
             $('#participateButton').html("Submit a solution");

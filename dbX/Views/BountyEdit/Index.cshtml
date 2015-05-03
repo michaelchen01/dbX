@@ -1,11 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Edit Bounty";
 }
 
 <div class="page-header">
-    <h1>Bounty Title</h1> 
-    <input id="bountyTitle" class="bountyTitleInput" type="text" name="bountyTitle" placeholder="Enter a title for your bounty"/>
+    <h1>Bounty Title</h1>
+    <input id="bountyTitle" class="bountyTitleInput" type="text" name="bountyTitle" placeholder="Enter a title for your bounty" value="@ViewData["BountyTitle"]"/>
 </div>
 
 <div class="row">
@@ -14,7 +14,7 @@
         <div class="quill-wrapper">
             <!-- Toolbar for Quill -->
             <div id="task-toolbar" class="toolbar">
-                <!-- Add font size dropdown --> 
+                <!-- Add font size dropdown -->
                 <select class="ql-size">
                     <option value="10px">Small</option>
                     <option value="13px" selected>Normal</option>
@@ -32,14 +32,13 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4" >
+    <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightgray">
                 <h3><b>Price</b></h3>
             </div>
-            <div class="panel-body">
-                <input id="bountyPrice" class="bountyPriceInput" type="text" placeholder="Enter a price for your bounty" />
-                <h4 style="font-family:Quicksand-Book">You have @ViewData["Coins"] coins available.</h4>
+            <div class="panel-body" style="text-align: center;">
+                <font size="5">@ViewData["Price"]</font>
             </div>
         </div>
     </div>
@@ -55,13 +54,10 @@
     <div class="col-sm-4">
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightgray">
-                <h3><b>Duration</b></h3>
+                <h3><b>Due Date</b></h3>
             </div>
-            <div class="panel-body" style="align-content:center">
-                <input id="bountyEndDays" class="bountyPriceInput" type="text" placeholder="Enter days" />
-                <input id="bountyEndHours" class="bountyPriceInput" type="text" placeholder="Enter hours." />
-                <h4 id="totalHours" style="font-family:Quicksand-Book">
-                </h4> 
+            <div class="panel-body" style="align-content:center; text-align: center">
+                <font size="5">@ViewData["EndTime"]</font>
             </div>
         </div>
         <div class="panel panel-default">
@@ -69,7 +65,7 @@
                 <h3><b>Tags</b></h3>
             </div>
             <div class="panel-body" style="align-content:center">
-                <input id="bountyTags" class="bountyPriceInput" type="text" placeholder="Write tags separated by commas" />
+                <input id="bountyTags" class="bountyPriceInput" type="text" placeholder="Write tags separated by commas" value="@ViewData["Tags"]"/>
             </div>
         </div>
         <!---<div class="panel panel-default">
@@ -86,55 +82,44 @@
         </div>-->
     </div>
 </div>
-<hr/>
+<hr />
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
         <div class="find-bounty-container">
-            <a id="submitBounty" class="btn btn-success post-bounty-button">Submit</a>
+            <a id="submitBounty" class="btn btn-success post-bounty-button">Done</a>
         </div>
     </div>
 </div>
 
-<script language="javascript">
+<script langauge="javascript">
+
     $(document).ready(function () {
 
+        // Set up code editor
         var codeEditor = ace.edit("code-editor");
         codeEditor.getSession().setMode("ace/mode/c_cpp");
         document.getElementById('code-editor').style.fontSize = '16px';
+        codeEditor.getSession().setValue('@Html.Raw(ViewData["Code"])');
         codeEditor.getSession().setUseWrapMode(true);
         codeEditor.setOptions({
-            minLines:10,
+            minLines: 10,
             maxLines: Infinity
         });
 
-        //// Create an instance of the background editor
-        //var backgroundEditor = new Quill('#background-editor', {
-        //    modules: {
-        //        'toolbar': { container: '#background-toolbar' }
-        //    },
-        //    theme: 'snow'
-        //});
-
+        // Set up task editor
         var taskEditor = new Quill('#task-editor', {
             modules: {
                 'toolbar': { container: '#task-toolbar' }
             },
             theme: 'snow'
         });
+        taskEditor.setHTML('@Html.Raw(ViewData["Task"])');
 
         function submitBounty() {
             // Get all the info
-          
+
             var bountyTitle = $('#bountyTitle').val();
             var bountyTask = taskEditor.getHTML();
-            var bountyPrice = $('#bountyPrice').val();
-            if (isNaN(bountyPrice) || bountyPrice < 0)
-                alert("Must set valid bounty price");
-            var today = Date.now();
-            var totalHours = parseInt($('#bountyEndDays').val()) * 24 + parseInt($('#bountyEndHours').val());
-            if (isNaN(totalHours) || totalHours < 0)
-                alert("Please submit valid duration");
-            var bountyEndTime = new Date(today + (totalHours * 60 * 60 * 1000));
             var bountyTags = $('#bountyTags').val().split(',');
             var bountyCode = codeEditor.getSession().getValue();
             // Need to add dummy value for background because it is still part of model
@@ -143,19 +128,20 @@
             var bountyDifficulty = "Hard";
             // Store it in a JSON object
             var bounty = {
+                'Id': '@ViewData["Id"]',
                 'Title': bountyTitle,
                 'Background': bountyBackground,
                 'Task': bountyTask,
                 'Tags': bountyTags,
-                'Price': bountyPrice,
+                'Price': '@ViewData["Price"]',
                 'Code': bountyCode,
-                'EndTime': bountyEndTime,
+                'EndTime': '@ViewData["EndTime"]',
                 'Difficulty': bountyDifficulty
             }
 
             // Send an AJAX query to the controller
             $.ajax({
-                url: '../api/SubmitBountyApi',
+                url: '../api/EditBountyApi',
                 type: 'POST',
                 data: JSON.stringify(bounty),
                 dataType: 'json',
@@ -169,7 +155,7 @@
             });
 
             // Redirect to Profile
-            alert("You've succesfully posted a bounty!")
+            alert("You've succesfully edited a bounty!")
 
             window.location.replace('../Profile');
         }
@@ -178,24 +164,6 @@
             submitBounty();
         });
 
-        function calculateHours() {
-            var hours = parseInt($('#bountyEndHours').val());
-            if (isNaN(hours) || hours < 0)
-                hours = 0;
-            var days = parseInt($('#bountyEndDays').val());
-            if (isNaN(days) || days < 0)
-                days = 0;
-            var totalHours = days * 24 + hours;
-            str = "Total Hours: " + totalHours.toString();
-            $("#totalHours").text(str);
-        }
 
-        $("#bountyEndDays").on('input propertychange', function () {
-            calculateHours();
-        });
-
-        $("#bountyEndHours").on('input propertychange', function () {
-            calculateHours();
-        });
     });
 </script>
