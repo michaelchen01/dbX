@@ -64,10 +64,27 @@
             </div>
         </div>
         @{
-            if (Int32.Parse(ViewData["Owner"].ToString()) == 1)
+            if(Int32.Parse(ViewData["Owner"].ToString()) == 1)
             {
                 @Html.ActionLink(HttpUtility.HtmlDecode("Edit Bounty &raquo;"), "Index", "BountyEdit", new { bountyId = ViewData["Id"]}, new { @class = "btn btn-warning btn-lg center-block" })
                 <div class="btn btn-danger btn-lg center-block">Delete Bounty &raquo;</div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="text-center">
+                        <div id="participateButton" class="btn btn-success btn-lg center-block" style="text-align: center"><font size="5">Participate &raquo;</font></div>
+                    </div>
+                </div>
+                if (Int32.Parse(ViewData["Participating"].ToString()) == 1)
+                {
+                    <hr/>
+                    <div class="row">
+                        <div class="text-center">
+                            <div class="btn btn-danger btn-lg center-block" style="text-align: center"><font size="3">Un-follow Bounty &raquo;</font></div>
+                        </div>
+                    </div>
+                }
             }
 }
     </div>
@@ -75,15 +92,7 @@
 
 @{
 
-    if (Int32.Parse(ViewData["Owner"].ToString()) == 0)
-    {
-        <div class="row">
-            <div class="text-center">
-                <div id="participateButton" class="btn btn-success btn-lg center-block" style="text-align: center"><font size="5">Participate</font></div>
-            </div>
-        </div>
-    }
-    else
+    if (Int32.Parse(ViewData["Owner"].ToString()) == 1)
     {
         <hr />  
     
@@ -151,18 +160,8 @@
                 </div>
                 <hr/>
                 <h1>Code</h1>
-                <div class="quill-wrapper">
-                    <!-- Toolbar for Quill -->
-                    <div id="code-toolbar" class="toolbar">
-                        <button class="ql-bold">Bold</button>
-                        <button class="ql-italic">Italic</button>
-                    </div>
-                    <!-- Editor for Quill -->
-                    <div id="code-editor">
-                        <div>Hi!</div>
-                        <div>Copy your code here!</div>
-                        <div><br></div>
-                    </div>
+                <div class="quill-wrapper" style="font-family:Courier New, Courier, monospace">
+                    <div id="modal-code-display-editor" class="input-code-editor" style="width: 100%;"></div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -236,15 +235,24 @@
         var code = '@Html.Raw(ViewData["Code"])';
 
         var codeEditor = ace.edit("code-display-editor");
-        codeEditor.setValue(code);
+        codeEditor.setValue(code, -1);
         codeEditor.getSession().setMode("ace/mode/c_cpp");
         document.getElementById('code-display-editor').style.fontSize = '16px';
         codeEditor.setReadOnly(true);
         codeEditor.getSession().setUseWrapMode(true);
 
+        var codeModalEditor = ace.edit("modal-code-display-editor");
+        codeModalEditor.getSession().setMode("ace/mode/c_cpp");
+        document.getElementById('modal-code-display-editor').style.fontSize = '16px';
+        codeEditor.getSession().setUseWrapMode(true);
+
         codeEditor.setOptions({
             minLines:10,
-            maxLines: Infinity
+            maxLines: 15
+        });
+        codeModalEditor.setOptions({
+            minLines:10,
+            maxLines: 15
         });
 
         if(@ViewData["Participating"] == 1) {
@@ -269,13 +277,6 @@
             theme: 'snow'
         });
 
-        var codeEditor = new Quill('#code-editor', {
-            modules: {
-                'toolbar': { container: '#code-toolbar' }
-            },
-            theme: 'snow'
-        });
-
         $(document).on('click','#participateButton',function () {
 
             var bountyId = '@ViewData["Id"]';
@@ -286,6 +287,8 @@
             $('#participateButton').attr('data-toggle','modal');
             $('#participateButton').attr('data-target','#myModal');
             $('#participateButton').attr('id','solution-button');
+
+            location.reload();
         });
 
         $('#solution-button').click(function() {

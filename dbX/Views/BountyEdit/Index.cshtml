@@ -103,7 +103,7 @@
         codeEditor.getSession().setUseWrapMode(true);
         codeEditor.setOptions({
             minLines: 10,
-            maxLines: Infinity
+            maxLines: 15
         });
 
         // Set up task editor
@@ -157,7 +157,7 @@
             // Redirect to Profile
             alert("You've succesfully edited a bounty!")
 
-            window.location.replace('../Profile');
+            window.location.replace('../BountyPost?bountyId=' + '@ViewData["Id"]' + '&owner=1');
         }
 
         $('#submitBounty').click(function () {
