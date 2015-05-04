@@ -32,7 +32,7 @@ namespace dbX.Controllers
             ViewData["BountyTitle"] = bounty.Title;
 
             ViewData["Description"] = solution.Description;
-            ViewData["Code"] = solution.Code;
+            ViewData["Code"] = solution.Code.Replace("\n", @"\n").Replace("\r", @"\r").Replace("'", @"\'");
 
             ViewData["LastModified"] = solution.LastModified.ToLongDateString();
 

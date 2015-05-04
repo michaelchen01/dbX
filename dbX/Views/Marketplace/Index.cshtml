@@ -14,45 +14,70 @@
 <div class="row">
     <div class="col-md-6">
         <div class="featured-deal">
-            <h2>Featured Deals</h2>
+            <h2 style="font-family:Quicksand-Book">Featured Deals</h2>
             <hr />
-            <div class="buy-coins">
-                <div class="col-md-6"><p>10 coins for $0.99</p></div>
-                <div class="col-md-6">
-                    <p><a id="coins-10" class="btn btn-warning btn-sm" href="">Buy &raquo;</a></p>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="buy-coins">
+                            <div class="col-md-4 col-md-offset-2"><p>10 coins for $0.99</p></div>
+                            <div class="col-md-4 col-md-offset-2">
+                                <p><a id="coins-10" class="btn btn-warning btn-sm" href="">Buy &raquo;</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="buy-coins">
+                            <div class="col-md-4 col-md-offset-2"><p>100 coins for $9.99</p></div>
+                            <div class="col-md-4 col-md-offset-2">
+                                <p><a id="coins-100" class="btn btn-warning btn-sm" href="">Buy &raquo;</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="buy coins">
+                            <div class="col-md-4 col-md-offset-2"><p>500 coins for $49.99</p></div>
+                            <div class="col-md-4 col-md-offset-2">
+                                <p><a id="coins-500" class="btn btn-warning btn-sm" href=" ">Buy &raquo;</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-2">
+                            <label for="amount">Custom Amount:</label>
+                            <input type="text" class="form-control" id="amount">
+                        </div>
+                        <div class="col-md-4">
+                            <p><a class="btn btn-warning btn-sm" href=" ">Buy &raquo;</a></p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="buy-coins">
-                <div class="col-md-6"><p>100 coins for $9.99</p></div>
-                <div class="col-md-6">
-                    <p><a id="coins-100" class="btn btn-warning btn-sm" href="">Buy &raquo;</a></p>
-                </div>
-            </div>
-            <div class="buy coins">
-                <div class="col-md-6"><p>500 coins for $49.99</p></div>
-                <div class="col-md-6">
-                    <p><a id="coins-500" class="btn btn-warning btn-sm" href=" ">Buy &raquo;</a></p>
-                </div>
-            </div>
-
         </div>
     </div>
     <div class="col-md-6">
         <div class="cash-out">
-            <h2>Cash Out</h2>
+            <h2 style="font-family:Quicksand-Book">Cash Out</h2>
             <hr />
-            <p>You have: @ViewData["Coins"] COINS</p>
-            <p>The current exchange rate is $0.10 per coin.</p>
-            <label for="amount">Amount:</label>
-            <input type="text" class="form-control" id="amount">
-            <p>Select Destination:</p>
-            <div class="radio">
-                <label><input type="radio" name="optradio">VISA ending in 0000</label>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4 style="font-family:Quicksand-Book">You have: @ViewData["Coins"] coins</h4>
+                    <p>The current exchange rate is $0.10 per coin.</p>
+                    <label for="amount">Amount:</label>
+                    <input type="text" class="form-control" id="amount">
+                    <hr/>    
+                    <p>Select Destination:</p>
+                    <div class="radio">
+                        <label><input type="radio" name="optradio">VISA ending in 0000</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="optradio">Paypal</label>
+                    </div>
+                    <hr />
+                    <p><a id="cash-out" class="btn btn-default btn-success">Cash Out &raquo;</a></p>
+                </div>
             </div>
-            <div class="radio">
-                <label><input type="radio" name="optradio">Paypal</label>
-            </div>
-            <p><a id="cash-out" class="btn btn-default btn-success" href="">Cash Out &raquo;</a></p>
         </div>
     </div>
 </div>
@@ -131,7 +156,7 @@
         $('#cash-out').click(function () {
             var coins = $('#amount').val();
 
-            if(coins != null && @ViewData["Coins"] >= coins && coins >= 0)
+            if(coins.localeCompare("") != 0 && @ViewData["Coins"] >= coins && coins >= 0)
             {
                 removeCoins(coins);
             }

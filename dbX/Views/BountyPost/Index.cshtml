@@ -197,10 +197,10 @@
 
     }
 
-    function submitSolution(descriptionEditor, codeEditor) {
+    function submitSolution(descriptionEditor, codeModalEditor) {
 
         var solutionDescription = descriptionEditor.getHTML();
-        var solutionCode = codeEditor.getHTML();
+        var solutionCode = codeModalEditor.getSession().getValue();
 
         var userId = '@Html.ViewData["UserId"]';
         var bountyId = '@ViewData["Id"]';
@@ -296,7 +296,7 @@
         });
 
         $('#submit-solution-button').click(function () {
-            submitSolution(descriptionEditor,codeEditor);
+            submitSolution(descriptionEditor,codeModalEditor);
         })
 
     });

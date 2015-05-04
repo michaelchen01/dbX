@@ -14,10 +14,10 @@
     <div class="col-md-4">
         <div class="coins-container">
             <div class="panel panel-default coins">
-                <div class="panel-heading" style="background-color: lightgray">
-                    <h3><b>Your Coins:</b></h3>
+                <div class="panel-heading" style="background-color: lightgray;">
+                    <h3 style="font-family:Quicksand-Book"><b>Your Coins:</b></h3>
                 </div>
-                <div class="panel-body" style="align-content:center">
+                <div class="panel-body" style="text-align: center; align-content:center">
                     <font size="5">@ViewData["Coins"]</font>
                 </div>
             </div>
@@ -29,7 +29,7 @@
     <div class="col-md-4"></div>
     <div class="col-md-4">
         <div class="profile-name-container">
-            <h2>@ViewData["Username"]</h2>
+            <h2 style="font-family: Quicksand-Book">@ViewData["Username"]</h2>
         </div>
     </div>
     <div class="col-md-4">
@@ -41,7 +41,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="profile-tab-container">
-            <ul class="nav nav-tabs nav-justified">
+            <ul class="nav nav-tabs nav-justified" style="font-family:Quicksand-Book">
                 <li id="followed-bounties-tab" role="presentation" class="active"><a href="#">Your Followed Bounties</a></li>
                 <li id="open-bounties-tab" role="presentation"><a href="#">Your Open Bounties</a></li>
                 <li id="solved-bounties-tab" role="presentation"><a href="#">Your Solved Bounties</a></li>
@@ -56,7 +56,6 @@
             <tr>
                 <th>Bounty Title</th>
                 <th>Description</th>
-                <th>Difficulty</th>
                 <th>Value</th>
                 <th>Time Left</th>
                 <th></th>
@@ -70,9 +69,6 @@
                         </td>
                         <td>
                             @Html.Raw(bounty.Task)
-                        </td>
-                        <td>
-                            @bounty.Difficulty
                         </td>
                         <td>
                             @bounty.Coins
@@ -99,7 +95,6 @@
             <tr>
                 <th>Bounty Title</th>
                 <th>Description</th>
-                <th>Difficulty</th>
                 <th>Value</th>
                 <th>Time Left</th>
                 <th></th>
@@ -113,9 +108,6 @@
                         </td>
                         <td>
                             @Html.Raw(bounty.Task)
-                        </td>
-                        <td>
-                            @bounty.Difficulty
                         </td>
                         <td>
                             @bounty.Coins
@@ -142,7 +134,6 @@
             <tr>
                 <th>Bounty Title</th>
                 <th>Description</th>
-                <th>Difficulty</th>
                 <th>Value</th>
                 <th>Time Left</th>
                 <th></th>
@@ -156,9 +147,6 @@
                         </td>
                         <td>
                             @Html.Raw(bounty.Task)
-                        </td>
-                        <td>
-                            @bounty.Difficulty
                         </td>
                         <td>
                             @bounty.Coins

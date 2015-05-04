@@ -12,13 +12,32 @@
         <h1>Description</h1>
         <p>@Html.Raw(ViewData["Description"])</p>
         <hr/>
+
         <h1>Code</h1>
-        <p><code>@Html.Raw(ViewData["Code"])</code></p>
+
+        <div class="quill-wrapper" style="font-family:Courier New, Courier, monospace">
+            <div id="code-display" class="input-code-editor" style="width: 100%;"></div>
+        </div>
+
     </div>
     <div class="col-md-4" style="text-align: center">
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightgray">
-                <h3>
+                <h3 style="font-family:Quicksand-Book">
+                    <b>
+                        Posted By
+                    </b>
+                </h3>
+            </div>
+            <div class="panel-body" style="align-content:center">
+                <font size="5">
+                    vocanozomu
+                </font>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color: lightgray">
+                <h3 style="font-family:Quicksand-Book">
                     <b>
                         Posted On
                     </b>
@@ -30,7 +49,18 @@
                 </font>
             </div>
         </div>
+        <div class="panel panel-default">
+            <div class="panel-body btn-primary" style="align-content:center">
+                <font size="5">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    <font size="5">
+                        Thrid Party Verified
+                    </font>
+                </font>
+            </div>
+        </div>
     </div>
+
 </div>
 
 <hr/>
@@ -41,3 +71,20 @@
     </div>
 </div>
 
+<script language="javascript">
+    $(document).ready(function () {
+        var code = '@Html.Raw(ViewData["Code"])';
+
+        var codeEditor = ace.edit("code-display");
+        codeEditor.setValue(code, -1);
+        codeEditor.getSession().setMode("ace/mode/c_cpp");
+        document.getElementById('code-display').style.fontSize = '16px';
+        codeEditor.setReadOnly(true);
+        codeEditor.getSession().setUseWrapMode(true);
+
+        codeEditor.setOptions({
+            minLines: 10,
+            maxLines: 15
+        });
+    });
+</script>
