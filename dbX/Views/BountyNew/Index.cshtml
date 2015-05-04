@@ -4,13 +4,13 @@
 }
 
 <div class="page-header">
-    <h1>Bounty Title</h1> 
+    <h1 data-toggle="tooltip" data-placement="left" title="A title gives a very high level overview of your bounty.">Bounty Title</h1> 
     <input id="bountyTitle" class="bountyTitleInput" type="text" name="bountyTitle" placeholder="Enter a title for your bounty"/>
 </div>
 
 <div class="row">
     <div class="col-md-8">
-        <h1>Task</h1>
+        <h1 data-toggle="tooltip" data-placement="left" title="A task is what you want the bounty hunter to help you solve. Be clear, and make sure to provide all necessary information.">Task</h1>
         <div class="quill-wrapper">
             <!-- Toolbar for Quill -->
             <div id="task-toolbar" class="toolbar">
@@ -35,7 +35,7 @@
     <div class="col-md-4" >
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightgray">
-                <h3><b>Price</b></h3>
+                <h3 class="bounty-post-font" data-toggle="tooltip" data-placement="left" title="Enter a price in coins for your bounty here."><b>Price</b></h3>
             </div>
             <div class="panel-body">
                 <input id="bountyPrice" class="bountyPriceInput" type="text" placeholder="Enter a price for your bounty" />
@@ -47,7 +47,7 @@
 
 <div class="row">
     <div class="col-md-8">
-        <h1>Code</h1>
+        <h1 data-toggle="tooltip" data-placement="left" title="You can provide some supplementary code along with your task here.">Code</h1>
         <div class="quill-wrapper" style="font-family:Courier New, Courier, monospace">
             <div id="code-editor" class="input-code-editor" style="width: 100%;">// Insert your code here!</div>
         </div>
@@ -55,7 +55,7 @@
     <div class="col-sm-4">
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightgray">
-                <h3><b>Duration</b></h3>
+                <h3 class="bounty-post-font" data-toggle="tooltip" data-placement="left" title="State how long you want your bounty to last in days and hours from right now."><b>Duration</b></h3>
             </div>
             <div class="panel-body" style="align-content:center">
                 <input id="bountyEndDays" class="bountyPriceInput" type="text" placeholder="Enter days" />
@@ -66,7 +66,7 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightgray">
-                <h3><b>Tags</b></h3>
+                <h3 class="bounty-post-font" data-toggle="tooltip" data-placement="left" title="Add any tags you think will be relevant to your bounty. They help bounty hunters find your bounty quickly."><b>Tags</b></h3>
             </div>
             <div class="panel-body" style="align-content:center">
                 <input id="bountyTags" class="bountyPriceInput" type="text" placeholder="Write tags separated by commas" />
@@ -97,6 +97,8 @@
 
 <script language="javascript">
     $(document).ready(function () {
+
+        $('[data-toggle="tooltip"]').tooltip();
 
         var codeEditor = ace.edit("code-editor");
         codeEditor.getSession().setMode("ace/mode/c_cpp");

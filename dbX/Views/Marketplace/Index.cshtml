@@ -14,8 +14,10 @@
 <div class="row">
     <div class="col-md-6">
         <div class="featured-deal">
-            <h2 style="font-family:Quicksand-Book">Featured Deals</h2>
+            <h2 style="font-family:Quicksand-Book" data-toggle="tooltip" data-placement="left" title="Featured Deals is where you can buy coins for real money.">Featured Deals</h2>
+            
             <hr />
+            
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="row">
@@ -58,7 +60,7 @@
     </div>
     <div class="col-md-6">
         <div class="cash-out">
-            <h2 style="font-family:Quicksand-Book">Cash Out</h2>
+            <h2 style="font-family:Quicksand-Book" data-toggle="tooltip" data-placement="left" title="Cash Out is where you can trade coins for real money.">Cash Out</h2>
             <hr />
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -139,6 +141,8 @@
     }
 
     $(document).ready(function () {
+
+        $('[data-toggle="tooltip"]').tooltip();
 
         $('#coins-5000').click(function () {
             addCoins(5000);

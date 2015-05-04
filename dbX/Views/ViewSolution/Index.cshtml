@@ -50,11 +50,12 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-body btn-primary" style="align-content:center">
+            <div class="panel-body btn-primary" style="align-content:center" data-toggle="tooltip" data-placement="left" title="Third party verified means that an external moderator has tested and 
+                 found that this solution does indeed solve your problem, and that it is the fastest to do so.">
                 <font size="5">
                     <span class="glyphicon glyphicon-ok"></span>
                     <font size="5">
-                        Thrid Party Verified
+                        Third Party Verified
                     </font>
                 </font>
             </div>
@@ -73,6 +74,8 @@
 
 <script language="javascript">
     $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+
         var code = '@Html.Raw(ViewData["Code"])';
 
         var codeEditor = ace.edit("code-display");

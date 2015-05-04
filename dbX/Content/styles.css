@@ -53,19 +53,30 @@ body h1{
     font-family: neou-thin;
 }
 
+.bounty-post-font {
+    font-family: Quicksand-Book;
+}
+
 body p{
     font-family: Quicksand-Book;
     /*font-family: neou-thin;*/
 }
 
 .featured-bounties {
-    font-family:Calibri;
+    font-family:Quicksand-Book;
 }
 
 .lead {
-    font-family: Calibri;
+    font-family: Quicksand-Book;
 }
 
+.featured-button {
+    font-family:Quicksand-Book;
+}
+
+.filter-input {
+    width: 100%;
+}
 
 .splash-jumbotron {
     /*background-color: #D72638;

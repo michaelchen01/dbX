@@ -40,7 +40,7 @@
                             <font size="5">@timeLeft.Days Days Left</font>
                         </p>
                         <hr />
-                        @Html.ActionLink(HttpUtility.HtmlDecode("View Details &raquo;"), "Index", "BountyPost", new { bountyId = bounty.Id, owner = 0 }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink(HttpUtility.HtmlDecode("View Details &raquo;"), "Index", "BountyPost", new { bountyId = bounty.Id, owner = 0 }, new { @class = "btn btn-primary featured-button" })
                     </div>
                 </div>
             }
