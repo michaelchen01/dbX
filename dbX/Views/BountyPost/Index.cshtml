@@ -67,6 +67,7 @@
             if (Int32.Parse(ViewData["Owner"].ToString()) == 1)
             {
                 @Html.ActionLink(HttpUtility.HtmlDecode("Edit Bounty &raquo;"), "Index", "BountyEdit", new { bountyId = ViewData["Id"]}, new { @class = "btn btn-warning btn-lg center-block" })
+                <div class="btn btn-danger btn-lg center-block">Delete Bounty &raquo;</div>
             }
 }
     </div>
@@ -95,7 +96,9 @@
                 @{
                     if ((ViewData["Solutions"] as List<dbX.Models.Solution>).Count == 0)
                     {
-                        <code>No submitted solutions yet!</code>
+                        <div style="text-align: center;">
+                            <code>No submitted solutions yet!</code>
+                        </div>
                     }
                     else
                     {
